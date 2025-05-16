@@ -1,0 +1,53 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+grpc-scanner
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Output files from the gRPC scanner
+scan_results.json
+*.json
+
+# Go workspace file
+go.work
+
+# Dependency directories (remove these if you want to check in vendor dependencies)
+/vendor/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Log files
+*.log
+
+# Environment variables
+.env
+*.env
+
+# User-specific configuration
+config.local.yaml
+*.local.yaml
+
+# Build directory
+/build/
+/bin/
+
+# Debug files
+__debug_bin
+/debug/
+
+# Temporary files
+/tmp/
+*.tmp scan_results.json

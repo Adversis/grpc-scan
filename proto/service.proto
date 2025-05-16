@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/user/grpc-scanner/proto";
+
+// HelloService provides greeting functionality
+service HelloService {
+  // SayHello generates a greeting
+  rpc SayHello (HelloRequest) returns (HelloResponse) {}
+  
+  // StreamHello demonstrates a server streaming call
+  rpc StreamHello (HelloRequest) returns (stream HelloResponse) {}
+}
+
+// UserService provides user management functionality
+service UserService {
+  // Login authenticates a user
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+  
+  // Register creates a new user account
+  rpc Register (RegisterRequest) returns (RegisterResponse) {}
+  
+  // GetProfile retrieves a user's profile information
+  rpc GetProfile (ProfileRequest) returns (ProfileResponse) {}
+}
+
+// ProductService provides product catalog functionality
+service ProductService {
+  // GetProduct retrieves a single product by ID
+  rpc GetProduct (GetProductRequest) returns (ProductResponse) {}
+  
+  // ListProducts retrieves a list of products with optional filtering
+  rpc ListProducts (ListProductsRequest) returns (ListProductsResponse) {}
+}
+
+// PingService provides connectivity checking functionality
+service PingService {
+  // Ping checks if the service is reachable
+  rpc Ping (PingRequest) returns (PingResponse) {}
+}
+
+// HelloRequest represents a greeting request
+message HelloRequest {
+  string name = 1;
+}
+
+// HelloResponse represents a greeting response
+message HelloResponse {
+  string message = 1;
+}
+
+// Authentication related messages
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string token = 2;
+  string error_message = 3;
+}
+
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+  string full_name = 4;
+}
+
+message RegisterResponse {
+  bool success = 1;
+  string user_id = 2;
+  string error_message = 3;
+}
+
+// Profile related messages
+message ProfileRequest {
+  string user_id = 1;
+}
+
+message ProfileResponse {
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+  string full_name = 4;
+  string created_at = 5;
+}
+
+// Product related messages
+message GetProductRequest {
+  string product_id = 1;
+}
+
+message ProductResponse {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int32 inventory = 5;
+  repeated string categories = 6;
+}
+
+message ListProductsRequest {
+  string category = 1;
+  float min_price = 2;
+  float max_price = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message ListProductsResponse {
+  repeated ProductResponse products = 1;
+  int32 total_count = 2;
+  int32 page = 3;
+  int32 total_pages = 4;
+}
+
+// Ping related messages
+message PingRequest {
+  string message = 1;
+}
+
+message PingResponse {
+  string message = 1;
+  string timestamp = 2;
+  string server_version = 3;
+} 
