@@ -1,50 +1,123 @@
-# gRPC Scanner
+# gRPC Scan
 
-A simple, powerful tool for discovering gRPC services and methods on any endpoint.
+A tool for discovering gRPC services and methods without needing protobuf files.
 
 ## Features
 
+- **No Protobuf Files Needed** - Test gRPC services directly without .proto definitions
+- **Direct Method Testing** - Call specific services/methods from the command line
 - **Automatic Protocol Handling** - Just point at an endpoint and go
-- **Smart Discovery** - Uses reflection when available, falls back to intelligent pattern matching
 - **Zero Configuration** - Works out of the box with sensible defaults
-- **Fast & Concurrent** - Parallel service checking for quick results
+- **Multi-Target Detection** - Scan multiple hosts to find gRPC services
+
+**grpcurl needs proto files**
+```
+% grpcurl -vv -plaintext localhost:50051 ProductService.ListProducts
+Error invoking method "ProductService.ListProducts": failed to query for service descriptor "ProductService": server does not support the reflection API
+```
+
+**while grpc-scan takes care of the protobuf tasks**
+```
+% grpc-scan -target localhost:50051 -wordlist data/grpc_common.txt   
+[+] Scanning localhost:50051...
+[+] Connected to gRPC service at localhost:50051
+[+] Progress: 50/73 checked (8917/sec) | Found: 1 services[+] Found: proto.PingService
+[+] Found: proto.UserService
+[+] Found: proto.AuthService
+[+] Found: proto.SecureService
+[+] Found: proto.HelloService
+[+] Found: proto.ProductService
+[+] Completed: 73/73 checked | Found: 7 services      
+```
 
 ## Installation
 
 ```bash
-go build -o grpc-scanner .
+go build -o grpc-scan .
 ```
 
 ## Usage
 
-Basic scan:
+### Basic Scanning
+
+Discover services using reflection or smart bruteforce:
 ```bash
-./grpc-scanner -target=localhost:50051
+./grpc-scan -target=localhost:50051
 ```
 
-Wordlist-based brute force:
+### Direct Method Testing (No .proto files needed!)
+
+Test a specific method directly:
 ```bash
-./grpc-scanner -target=api.example.com:443 -wordlist=wordlist.txt
+# Call format: Service/Method
+./grpc-scan -target=api.example.com:443 -call=UserService/GetUser
+./grpc-scan -target=api.example.com:443 -call=proto.PingService/Ping
 ```
 
-Multi-threaded wordlist scan:
+Test specific services and methods:
 ```bash
-./grpc-scanner -target=api.example.com:443 -wordlist=services.txt -threads=50 -v
+# Test specific service with default methods
+./grpc-scan -target=api.example.com:443 -service=UserService
+
+# Test multiple services
+./grpc-scan -target=api.example.com:443 -service=UserService,AuthService
+
+# Test specific methods on a service
+./grpc-scan -target=api.example.com:443 -service=UserService -method=Login,Register,GetProfile
 ```
+
+### Wordlist-Based Discovery
+
+Use the comprehensive wordlist for thorough scanning:
+```bash
+./grpc-scan -target=api.example.com:443 -wordlist=data/grpc_wordlist.txt
+```
+
+Multi-threaded for faster scanning:
+```bash
+./grpc-scan -target=api.example.com:443 -wordlist=data/grpc_wordlist.txt -threads=50
+```
+
+### Multi-Target Detection
+
+Detect gRPC services across multiple hosts:
+```bash
+# From file
+./grpc-scan detect -targets=domains.txt -threads=100
+
+# From stdin
+cat targets.txt | ./grpc-scan detect -output=grpc_services.txt
+
+# Output in JSON
+./grpc-scan detect -targets=domains.txt -json -output=results.json
+```
+
+### Output Options
 
 Save results to file:
 ```bash
-./grpc-scanner -target=api.example.com:443 -output=results.json
+./grpc-scan -target=api.example.com:443 -output=results.json
+```
+
+Simple output (service names only):
+```bash
+./grpc-scan -target=localhost:50051 -simple
 ```
 
 Verbose mode for debugging:
 ```bash
-./grpc-scanner -target=localhost:50051 -v
+./grpc-scan -target=localhost:50051 -v
 ```
 
-Simple output (just service names):
+## Comparison with grpcurl
+
+Unlike grpcurl which requires protobuf files:
 ```bash
-./grpc-scanner -target=localhost:50051 -simple
+# grpcurl needs .proto files or server reflection
+grpcurl -proto user.proto api.example.com:443 UserService/GetUser
+
+# grpc-scan works without any proto files!
+./grpc-scan -target=api.example.com:443 -call=UserService/GetUser
 ```
 
 ## How It Works
@@ -60,7 +133,10 @@ Simple output (just service names):
 ## Options
 
 - `-target` - gRPC server address (default: localhost:50051)
-- `-wordlist` - Path to wordlist file for service brute forcing
+- `-call` - Call a specific service/method (format: Service/Method)
+- `-service` - Test specific services (comma-separated)
+- `-method` - Test specific methods (comma-separated)
+- `-wordlist` - Path to wordlist file for service discovery
 - `-threads` - Number of concurrent threads (default: 10)
 - `-timeout` - Timeout in seconds (default: 10)
 - `-output` - Save results to JSON file (default: stdout)
@@ -114,17 +190,17 @@ PaymentService:ProcessPayment,RefundPayment,GetStatus
 
 Basic wordlist scan:
 ```bash
-./grpc-scanner -target=api.example.com:443 -wordlist=services.txt
+./grpc-scan -target=api.example.com:443 -wordlist=services.txt
 ```
 
 With separate methods file:
 ```bash
-./grpc-scanner -target=api.example.com:443 -wordlist=services.txt -methods=methods.txt
+./grpc-scan -target=api.example.com:443 -wordlist=services.txt -methods=methods.txt
 ```
 
 Fast scanning with 50 threads:
 ```bash
-./grpc-scanner -target=api.example.com:443 -wordlist=enhanced.txt -threads=50
+./grpc-scan -target=api.example.com:443 -wordlist=enhanced.txt -threads=50
 ```
 
 ### Pattern Generation
@@ -139,49 +215,7 @@ For each service in the wordlist, the scanner automatically tries:
 
 The `data/` directory contains several optimized wordlists:
 
-- **`grpc_common.txt`** - Quick scan with ~100 most common services
-- **`grpc_comprehensive.txt`** - Thorough scan with 500+ services
-- **`grpc_examples_based.txt`** - Services from grpc-go examples
-- **`methods_comprehensive.txt`** - 300+ method names
-
-See [data/WORDLISTS_GUIDE.md](data/WORDLISTS_GUIDE.md) for detailed usage.
-
-Example:
-```bash
-# Quick scan
-./grpc-scanner -target=api.example.com:443 -wordlist=data/grpc_common.txt
-
-# Comprehensive scan
-./grpc-scanner -target=api.example.com:443 -wordlist=data/grpc_comprehensive.txt -threads=50
-```
-
-### Generating Wordlists from API Documentation
-
-The scanner includes built-in wordlist generation from API documentation:
-
-```bash
-# Extract from URL
-./grpc-scanner wordlist -url=https://dev.evernote.com/doc/reference/ -output=evernote_services.txt
-
-# Extract from local file
-./grpc-scanner wordlist -input=api_docs.html -output=services.txt
-
-# Use the generated wordlist
-./grpc-scanner -target=api.evernote.com:443 -wordlist=evernote_services.txt
-```
-
-See [README_API2WORDLIST.md](README_API2WORDLIST.md) for detailed usage.
-
-## Smart Pattern Matching
-
-When reflection is disabled and no wordlist is provided, the scanner uses intelligent patterns:
-
-- Common service structures: `Service`, `ServiceName`, `package.Service`
-- Versioned services: `service.v1.ServiceName`
-- Business domains: User, Auth, Product, Order, Payment, etc.
-- Method patterns: Get, List, Create, Update, Delete, plus domain-specific methods
-
-The scanner distinguishes between "service not found" and other errors (auth, parameters, etc.) to accurately identify existing services.
+- **`grpc_wordlist.txt`** - Quick scan with common services
 
 ## License
 

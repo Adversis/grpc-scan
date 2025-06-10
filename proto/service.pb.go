@@ -851,6 +851,586 @@ func (x *PingResponse) GetServerVersion() string {
 	return ""
 }
 
+type ValidateAPIKeyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ApiKey        string                 `protobuf:"bytes,1,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateAPIKeyRequest) Reset() {
+	*x = ValidateAPIKeyRequest{}
+	mi := &file_proto_service_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateAPIKeyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateAPIKeyRequest) ProtoMessage() {}
+
+func (x *ValidateAPIKeyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateAPIKeyRequest.ProtoReflect.Descriptor instead.
+func (*ValidateAPIKeyRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ValidateAPIKeyRequest) GetApiKey() string {
+	if x != nil {
+		return x.ApiKey
+	}
+	return ""
+}
+
+type ValidateAPIKeyResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	Error         string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateAPIKeyResponse) Reset() {
+	*x = ValidateAPIKeyResponse{}
+	mi := &file_proto_service_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateAPIKeyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateAPIKeyResponse) ProtoMessage() {}
+
+func (x *ValidateAPIKeyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateAPIKeyResponse.ProtoReflect.Descriptor instead.
+func (*ValidateAPIKeyResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ValidateAPIKeyResponse) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
+}
+
+func (x *ValidateAPIKeyResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+type CreateTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateTokenRequest) Reset() {
+	*x = CreateTokenRequest{}
+	mi := &file_proto_service_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenRequest) ProtoMessage() {}
+
+func (x *CreateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenRequest.ProtoReflect.Descriptor instead.
+func (*CreateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *CreateTokenRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *CreateTokenRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type CreateTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	ExpiresIn     int32                  `protobuf:"varint,3,opt,name=expires_in,json=expiresIn,proto3" json:"expires_in,omitempty"`
+	Error         string                 `protobuf:"bytes,4,opt,name=error,proto3" json:"error,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateTokenResponse) Reset() {
+	*x = CreateTokenResponse{}
+	mi := &file_proto_service_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTokenResponse) ProtoMessage() {}
+
+func (x *CreateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTokenResponse.ProtoReflect.Descriptor instead.
+func (*CreateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CreateTokenResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CreateTokenResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *CreateTokenResponse) GetExpiresIn() int32 {
+	if x != nil {
+		return x.ExpiresIn
+	}
+	return 0
+}
+
+func (x *CreateTokenResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+type ValidateTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateTokenRequest) Reset() {
+	*x = ValidateTokenRequest{}
+	mi := &file_proto_service_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateTokenRequest) ProtoMessage() {}
+
+func (x *ValidateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateTokenRequest.ProtoReflect.Descriptor instead.
+func (*ValidateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ValidateTokenRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type ValidateTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Error         string                 `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateTokenResponse) Reset() {
+	*x = ValidateTokenResponse{}
+	mi := &file_proto_service_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateTokenResponse) ProtoMessage() {}
+
+func (x *ValidateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateTokenResponse.ProtoReflect.Descriptor instead.
+func (*ValidateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ValidateTokenResponse) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
+}
+
+func (x *ValidateTokenResponse) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *ValidateTokenResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+type SecretRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ResourceId    string                 `protobuf:"bytes,1,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SecretRequest) Reset() {
+	*x = SecretRequest{}
+	mi := &file_proto_service_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SecretRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SecretRequest) ProtoMessage() {}
+
+func (x *SecretRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SecretRequest.ProtoReflect.Descriptor instead.
+func (*SecretRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SecretRequest) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+type SecretResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Data           string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Classification string                 `protobuf:"bytes,2,opt,name=classification,proto3" json:"classification,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SecretResponse) Reset() {
+	*x = SecretResponse{}
+	mi := &file_proto_service_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SecretResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SecretResponse) ProtoMessage() {}
+
+func (x *SecretResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SecretResponse.ProtoReflect.Descriptor instead.
+func (*SecretResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *SecretResponse) GetData() string {
+	if x != nil {
+		return x.Data
+	}
+	return ""
+}
+
+func (x *SecretResponse) GetClassification() string {
+	if x != nil {
+		return x.Classification
+	}
+	return ""
+}
+
+type ListSecretsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSecretsRequest) Reset() {
+	*x = ListSecretsRequest{}
+	mi := &file_proto_service_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSecretsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSecretsRequest) ProtoMessage() {}
+
+func (x *ListSecretsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSecretsRequest.ProtoReflect.Descriptor instead.
+func (*ListSecretsRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ListSecretsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListSecretsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type ListSecretsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Secrets       []*SecretInfo          `protobuf:"bytes,1,rep,name=secrets,proto3" json:"secrets,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListSecretsResponse) Reset() {
+	*x = ListSecretsResponse{}
+	mi := &file_proto_service_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListSecretsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSecretsResponse) ProtoMessage() {}
+
+func (x *ListSecretsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSecretsResponse.ProtoReflect.Descriptor instead.
+func (*ListSecretsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ListSecretsResponse) GetSecrets() []*SecretInfo {
+	if x != nil {
+		return x.Secrets
+	}
+	return nil
+}
+
+func (x *ListSecretsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type SecretInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SecretInfo) Reset() {
+	*x = SecretInfo{}
+	mi := &file_proto_service_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SecretInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SecretInfo) ProtoMessage() {}
+
+func (x *SecretInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SecretInfo.ProtoReflect.Descriptor instead.
+func (*SecretInfo) Descriptor() ([]byte, []int) {
+	return file_proto_service_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *SecretInfo) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SecretInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *SecretInfo) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
 var File_proto_service_proto protoreflect.FileDescriptor
 
 const file_proto_service_proto_rawDesc = "" +
@@ -916,7 +1496,45 @@ const file_proto_service_proto_rawDesc = "" +
 	"\fPingResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x1c\n" +
 	"\ttimestamp\x18\x02 \x01(\tR\ttimestamp\x12%\n" +
-	"\x0eserver_version\x18\x03 \x01(\tR\rserverVersion2\x85\x01\n" +
+	"\x0eserver_version\x18\x03 \x01(\tR\rserverVersion\"0\n" +
+	"\x15ValidateAPIKeyRequest\x12\x17\n" +
+	"\aapi_key\x18\x01 \x01(\tR\x06apiKey\"D\n" +
+	"\x16ValidateAPIKeyResponse\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x14\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error\"L\n" +
+	"\x12CreateTokenRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"z\n" +
+	"\x13CreateTokenResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1d\n" +
+	"\n" +
+	"expires_in\x18\x03 \x01(\x05R\texpiresIn\x12\x14\n" +
+	"\x05error\x18\x04 \x01(\tR\x05error\",\n" +
+	"\x14ValidateTokenRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"_\n" +
+	"\x15ValidateTokenResponse\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +
+	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
+	"\x05error\x18\x03 \x01(\tR\x05error\"0\n" +
+	"\rSecretRequest\x12\x1f\n" +
+	"\vresource_id\x18\x01 \x01(\tR\n" +
+	"resourceId\"L\n" +
+	"\x0eSecretResponse\x12\x12\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data\x12&\n" +
+	"\x0eclassification\x18\x02 \x01(\tR\x0eclassification\"E\n" +
+	"\x12ListSecretsRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\"X\n" +
+	"\x13ListSecretsResponse\x12+\n" +
+	"\asecrets\x18\x01 \x03(\v2\x11.proto.SecretInfoR\asecrets\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"O\n" +
+	"\n" +
+	"SecretInfo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x03 \x01(\tR\tcreatedAt2\x85\x01\n" +
 	"\fHelloService\x127\n" +
 	"\bSayHello\x12\x13.proto.HelloRequest\x1a\x14.proto.HelloResponse\"\x00\x12<\n" +
 	"\vStreamHello\x12\x13.proto.HelloRequest\x1a\x14.proto.HelloResponse\"\x000\x012\xc1\x01\n" +
@@ -930,7 +1548,14 @@ const file_proto_service_proto_rawDesc = "" +
 	"GetProduct\x12\x18.proto.GetProductRequest\x1a\x16.proto.ProductResponse\"\x00\x12I\n" +
 	"\fListProducts\x12\x1a.proto.ListProductsRequest\x1a\x1b.proto.ListProductsResponse\"\x002@\n" +
 	"\vPingService\x121\n" +
-	"\x04Ping\x12\x12.proto.PingRequest\x1a\x13.proto.PingResponse\"\x00B$Z\"github.com/user/grpc-scanner/protob\x06proto3"
+	"\x04Ping\x12\x12.proto.PingRequest\x1a\x13.proto.PingResponse\"\x002\xf4\x01\n" +
+	"\vAuthService\x12O\n" +
+	"\x0eValidateAPIKey\x12\x1c.proto.ValidateAPIKeyRequest\x1a\x1d.proto.ValidateAPIKeyResponse\"\x00\x12F\n" +
+	"\vCreateToken\x12\x19.proto.CreateTokenRequest\x1a\x1a.proto.CreateTokenResponse\"\x00\x12L\n" +
+	"\rValidateToken\x12\x1b.proto.ValidateTokenRequest\x1a\x1c.proto.ValidateTokenResponse\"\x002\x97\x01\n" +
+	"\rSecureService\x12>\n" +
+	"\rGetSecretData\x12\x14.proto.SecretRequest\x1a\x15.proto.SecretResponse\"\x00\x12F\n" +
+	"\vListSecrets\x12\x19.proto.ListSecretsRequest\x1a\x1a.proto.ListSecretsResponse\"\x00B$Z\"github.com/user/grpc-scanner/protob\x06proto3"
 
 var (
 	file_proto_service_proto_rawDescOnce sync.Once
@@ -944,46 +1569,68 @@ func file_proto_service_proto_rawDescGZIP() []byte {
 	return file_proto_service_proto_rawDescData
 }
 
-var file_proto_service_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_proto_service_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_proto_service_proto_goTypes = []any{
-	(*HelloRequest)(nil),         // 0: proto.HelloRequest
-	(*HelloResponse)(nil),        // 1: proto.HelloResponse
-	(*LoginRequest)(nil),         // 2: proto.LoginRequest
-	(*LoginResponse)(nil),        // 3: proto.LoginResponse
-	(*RegisterRequest)(nil),      // 4: proto.RegisterRequest
-	(*RegisterResponse)(nil),     // 5: proto.RegisterResponse
-	(*ProfileRequest)(nil),       // 6: proto.ProfileRequest
-	(*ProfileResponse)(nil),      // 7: proto.ProfileResponse
-	(*GetProductRequest)(nil),    // 8: proto.GetProductRequest
-	(*ProductResponse)(nil),      // 9: proto.ProductResponse
-	(*ListProductsRequest)(nil),  // 10: proto.ListProductsRequest
-	(*ListProductsResponse)(nil), // 11: proto.ListProductsResponse
-	(*PingRequest)(nil),          // 12: proto.PingRequest
-	(*PingResponse)(nil),         // 13: proto.PingResponse
+	(*HelloRequest)(nil),           // 0: proto.HelloRequest
+	(*HelloResponse)(nil),          // 1: proto.HelloResponse
+	(*LoginRequest)(nil),           // 2: proto.LoginRequest
+	(*LoginResponse)(nil),          // 3: proto.LoginResponse
+	(*RegisterRequest)(nil),        // 4: proto.RegisterRequest
+	(*RegisterResponse)(nil),       // 5: proto.RegisterResponse
+	(*ProfileRequest)(nil),         // 6: proto.ProfileRequest
+	(*ProfileResponse)(nil),        // 7: proto.ProfileResponse
+	(*GetProductRequest)(nil),      // 8: proto.GetProductRequest
+	(*ProductResponse)(nil),        // 9: proto.ProductResponse
+	(*ListProductsRequest)(nil),    // 10: proto.ListProductsRequest
+	(*ListProductsResponse)(nil),   // 11: proto.ListProductsResponse
+	(*PingRequest)(nil),            // 12: proto.PingRequest
+	(*PingResponse)(nil),           // 13: proto.PingResponse
+	(*ValidateAPIKeyRequest)(nil),  // 14: proto.ValidateAPIKeyRequest
+	(*ValidateAPIKeyResponse)(nil), // 15: proto.ValidateAPIKeyResponse
+	(*CreateTokenRequest)(nil),     // 16: proto.CreateTokenRequest
+	(*CreateTokenResponse)(nil),    // 17: proto.CreateTokenResponse
+	(*ValidateTokenRequest)(nil),   // 18: proto.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil),  // 19: proto.ValidateTokenResponse
+	(*SecretRequest)(nil),          // 20: proto.SecretRequest
+	(*SecretResponse)(nil),         // 21: proto.SecretResponse
+	(*ListSecretsRequest)(nil),     // 22: proto.ListSecretsRequest
+	(*ListSecretsResponse)(nil),    // 23: proto.ListSecretsResponse
+	(*SecretInfo)(nil),             // 24: proto.SecretInfo
 }
 var file_proto_service_proto_depIdxs = []int32{
 	9,  // 0: proto.ListProductsResponse.products:type_name -> proto.ProductResponse
-	0,  // 1: proto.HelloService.SayHello:input_type -> proto.HelloRequest
-	0,  // 2: proto.HelloService.StreamHello:input_type -> proto.HelloRequest
-	2,  // 3: proto.UserService.Login:input_type -> proto.LoginRequest
-	4,  // 4: proto.UserService.Register:input_type -> proto.RegisterRequest
-	6,  // 5: proto.UserService.GetProfile:input_type -> proto.ProfileRequest
-	8,  // 6: proto.ProductService.GetProduct:input_type -> proto.GetProductRequest
-	10, // 7: proto.ProductService.ListProducts:input_type -> proto.ListProductsRequest
-	12, // 8: proto.PingService.Ping:input_type -> proto.PingRequest
-	1,  // 9: proto.HelloService.SayHello:output_type -> proto.HelloResponse
-	1,  // 10: proto.HelloService.StreamHello:output_type -> proto.HelloResponse
-	3,  // 11: proto.UserService.Login:output_type -> proto.LoginResponse
-	5,  // 12: proto.UserService.Register:output_type -> proto.RegisterResponse
-	7,  // 13: proto.UserService.GetProfile:output_type -> proto.ProfileResponse
-	9,  // 14: proto.ProductService.GetProduct:output_type -> proto.ProductResponse
-	11, // 15: proto.ProductService.ListProducts:output_type -> proto.ListProductsResponse
-	13, // 16: proto.PingService.Ping:output_type -> proto.PingResponse
-	9,  // [9:17] is the sub-list for method output_type
-	1,  // [1:9] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	24, // 1: proto.ListSecretsResponse.secrets:type_name -> proto.SecretInfo
+	0,  // 2: proto.HelloService.SayHello:input_type -> proto.HelloRequest
+	0,  // 3: proto.HelloService.StreamHello:input_type -> proto.HelloRequest
+	2,  // 4: proto.UserService.Login:input_type -> proto.LoginRequest
+	4,  // 5: proto.UserService.Register:input_type -> proto.RegisterRequest
+	6,  // 6: proto.UserService.GetProfile:input_type -> proto.ProfileRequest
+	8,  // 7: proto.ProductService.GetProduct:input_type -> proto.GetProductRequest
+	10, // 8: proto.ProductService.ListProducts:input_type -> proto.ListProductsRequest
+	12, // 9: proto.PingService.Ping:input_type -> proto.PingRequest
+	14, // 10: proto.AuthService.ValidateAPIKey:input_type -> proto.ValidateAPIKeyRequest
+	16, // 11: proto.AuthService.CreateToken:input_type -> proto.CreateTokenRequest
+	18, // 12: proto.AuthService.ValidateToken:input_type -> proto.ValidateTokenRequest
+	20, // 13: proto.SecureService.GetSecretData:input_type -> proto.SecretRequest
+	22, // 14: proto.SecureService.ListSecrets:input_type -> proto.ListSecretsRequest
+	1,  // 15: proto.HelloService.SayHello:output_type -> proto.HelloResponse
+	1,  // 16: proto.HelloService.StreamHello:output_type -> proto.HelloResponse
+	3,  // 17: proto.UserService.Login:output_type -> proto.LoginResponse
+	5,  // 18: proto.UserService.Register:output_type -> proto.RegisterResponse
+	7,  // 19: proto.UserService.GetProfile:output_type -> proto.ProfileResponse
+	9,  // 20: proto.ProductService.GetProduct:output_type -> proto.ProductResponse
+	11, // 21: proto.ProductService.ListProducts:output_type -> proto.ListProductsResponse
+	13, // 22: proto.PingService.Ping:output_type -> proto.PingResponse
+	15, // 23: proto.AuthService.ValidateAPIKey:output_type -> proto.ValidateAPIKeyResponse
+	17, // 24: proto.AuthService.CreateToken:output_type -> proto.CreateTokenResponse
+	19, // 25: proto.AuthService.ValidateToken:output_type -> proto.ValidateTokenResponse
+	21, // 26: proto.SecureService.GetSecretData:output_type -> proto.SecretResponse
+	23, // 27: proto.SecureService.ListSecrets:output_type -> proto.ListSecretsResponse
+	15, // [15:28] is the sub-list for method output_type
+	2,  // [2:15] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_proto_service_proto_init() }
@@ -997,9 +1644,9 @@ func file_proto_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_service_proto_rawDesc), len(file_proto_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   25,
 			NumExtensions: 0,
-			NumServices:   4,
+			NumServices:   6,
 		},
 		GoTypes:           file_proto_service_proto_goTypes,
 		DependencyIndexes: file_proto_service_proto_depIdxs,

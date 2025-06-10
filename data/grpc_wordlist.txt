@@ -1,0 +1,621 @@
+# Combined gRPC Wordlist
+# Generated from all wordlist files
+# Format: service_name or service_name:method1,method2,...
+
+API
+APIGateway:Route,Forward,Process
+Account
+AccountService:CreateAccount,GetAccount,UpdateAccount
+AccountService:CreateAccount,GetAccount,UpdateAccount,DeleteAccount,ListAccounts,GetAccountById
+Action
+Activity
+Address
+Admin
+AdminService:GetStats,GetMetrics,ExecuteCommand
+AdminService:GetSystemInfo,GetUsers,ManageUser,GetLogs,GetMetrics,ExecuteCommand
+Agreement
+AnalyticsService:TrackEvent,GetAnalytics,GetReport,GetMetrics,GetEvents
+Api
+ApiService:Call,Execute
+ApiService:Call,Execute,Validate,Transform,Route
+App
+Application
+Archive
+Article
+Asset
+Attachment
+Attribute
+Audit
+AuditService:LogEvent,GetAuditLog,SearchAuditLog,GetAuditTrail
+Auth
+AuthService:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken,RevokeToken,GetPermissions
+AuthService:Login,Logout,Authenticate,ValidateToken,RefreshToken
+Authentication:Login,Logout,Authenticate
+Authentication:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken
+Authorization:Authorize,CheckPermission,GetPermissions,GrantPermission,RevokePermission
+Backend
+Backup
+Batch
+Billing
+BillingService:GetInvoice,ProcessPayment,GetBillingInfo
+BroadcastService:Broadcast,Subscribe,Unsubscribe,GetSubscribers
+Build
+Bundle
+Cache
+CacheService:Get,Set,Delete,Clear,GetKeys,Expire
+Callback
+CartService:AddToCart,RemoveFromCart,GetCart,Checkout
+CartService:GetCart,AddToCart,RemoveFromCart,UpdateCartItem,ClearCart,Checkout
+CatalogService:GetCatalog,ListItems,SearchCatalog,GetCategories,GetItemsByCategory
+Certificate
+Channel
+ChatService:SendMessage,GetMessages,JoinRoom
+ChatService:SendMessage,GetMessages,JoinRoom,LeaveRoom,GetRooms,CreateRoom
+CheckoutService:Checkout,CalculateTotals,ApplyDiscount,ValidateCheckout
+Cluster
+Column
+Command
+Comment
+Company
+Component
+Config
+ConfigService:GetConfig,SetConfig,UpdateConfig,DeleteConfig,GetAllConfigs
+Constraint# gRPC Wordlist Based on grpc-go/examples
+Consumer
+Contact
+Container
+Content
+Contract
+Controller
+Core
+CoreService:GetVersion,GetStatus,GetInfo
+Coupon
+Credential
+Cron
+Currency
+Customer
+Dashboard
+Data
+DataService:Get,List,Create,Update,Delete,Query,Export,Import
+Database
+DatabaseService:Query,Execute,GetSchema,Migrate,Backup,Restore
+DebugService:Debug,GetDebugInfo,SetDebugLevel
+Delivery
+Department
+Deploy
+Deployment
+Device
+Discount
+DiscoveryService:Discover,Register,Deregister,GetServices,GetEndpoints
+Distribution
+Document
+Echo:Echo,UnaryEcho,StreamingEcho
+Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+EchoService:Echo
+EchoService:Echo,UnaryEcho,StreamingEcho
+EchoService:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+EmailService:SendEmail,GetEmailStatus
+EmailService:SendEmail,SendBulkEmail,GetEmailStatus,ValidateEmail
+EncryptionService:Encrypt,Decrypt,GenerateKey,RotateKey,GetPublicKey
+Endpoint
+Environment
+Error
+Event
+EventService:PublishEvent,SubscribeToEvents,GetEvents,GetEventHistory
+Exception
+Export
+Extension
+Feature
+Feedback
+Field
+FileService:Upload,Download,Delete,List
+FileService:UploadFile,DownloadFile,DeleteFile,GetFileInfo,ListFiles,MoveFile,CopyFile
+Format
+Function
+Gateway
+Gateway:Route,Forward,Transform
+GatewayService:Route,Forward
+GatewayService:Route,Forward,Transform,Authenticate,RateLimit
+Greeter:SayHello
+Greeter:SayHello,SayHelloAgain
+GreeterService:Greet,SayHello
+GreeterService:SayHello
+Handler
+Health
+HealthService:Check,Watch
+HealthService:Check,Watch,GetStatus,GetHealth
+HelloService:Hello,SayHello
+HelloService:SayHello
+History
+Image
+ImageService:UploadImage,GetImage,DeleteImage,ResizeImage,GetThumbnail
+Import
+Index
+Instance
+Integration
+InventoryService:GetInventory,UpdateInventory,CheckAvailability,ReserveItems,ReleaseItems
+Invoice
+Issue
+Job
+JobService:CreateJob,GetJob,ListJobs,CancelJob,GetJobStatus,RetryJob
+Key
+Language
+Layout
+License
+Link
+Locale
+Location
+LocationService:GetLocation,ListLocations,RecordLocation
+Log
+LoggingService:Log,GetLogs,SearchLogs,GetLogLevel,SetLogLevel
+Loyalty
+Main
+MainService:Execute,Process,Handle
+Management
+ManagementService:GetStatus,GetHealth,GetMetrics,ManageService,RestartService
+ManagementService:Manage,Control,Configure
+Manager
+MediaService:Upload,GetMedia,Process
+MediaService:UploadMedia,GetMedia,DeleteMedia,TranscodeMedia,GetThumbnail
+Member
+MessageService:SendMessage,GetMessages,DeleteMessage
+MessageService:SendMessage,GetMessages,GetConversation,DeleteMessage,MarkAsRead
+Method
+Metric
+MetricsService:GetMetrics,RecordMetric,GetMetricHistory,GetAggregatedMetrics
+Migration
+Module
+Monitor
+MonitorService:Monitor,GetMetrics,GetStatus
+MonitoringService:GetStatus,GetHealth,GetMetrics,GetAlerts,CreateAlert
+Network
+Node
+NotificationService:SendNotification,GetNotifications
+NotificationService:SendNotification,GetNotifications,MarkAsRead,DeleteNotification,GetUnreadCount
+Operation
+Option
+OrderService:CreateOrder,GetOrder,ListOrders,UpdateOrder,CancelOrder,GetOrderStatus,GetOrderHistory
+OrderService:CreateOrder,GetOrder,UpdateOrder,CancelOrder
+Organization
+Package
+Page
+Parameter
+Path
+PaymentService:ProcessPayment,RefundPayment,GetPaymentStatus
+PaymentService:ProcessPayment,RefundPayment,GetPaymentStatus,GetPaymentMethods,ValidatePayment
+Permission
+Phase
+Phone
+PingService:Ping
+Plan
+Platform
+Plugin
+Pod
+Point
+Policy
+Post
+Preference
+PreferenceService:GetPreferences,SetPreferences,UpdatePreferences,ResetPreferences
+Price
+Procedure
+ProcessService:StartProcess,GetProcess,ListProcesses,StopProcess,GetProcessStatus
+Processor
+Producer
+ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct,SearchProducts,GetProductsByCategory
+ProductService:GetProduct,ListProducts,SearchProducts
+Profile
+ProfileService:GetProfile,UpdateProfile,DeleteProfile,GetProfilePicture,UpdateProfilePicture
+Project
+Promotion
+Property
+Provider
+Proxy
+Proxy:ProxyRequest,Forward# Standard gRPC service paths
+ProxyService:Proxy,Forward
+ProxyService:Proxy,Forward,Route,Transform,Cache
+Publisher
+Query
+QueryService:Query,Execute,Prepare,GetResults,GetSchema
+QueryService:Query,ExecuteQuery,GetQueryResults,SaveQuery,GetSavedQueries
+Queue
+Quote
+Rate
+Rating
+Receipt
+Redirect
+Registry
+Release
+Replication
+Report
+Repository
+Request
+Resource
+Response
+Restore
+Result
+Review
+Reward
+Role
+Room
+Route
+RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+Router
+Rule
+Scheduler
+Schema
+SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
+Secret
+SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
+Server
+Service
+ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
+SessionService:CreateSession,GetSession,UpdateSession,DeleteSession,ValidateSession
+Setting
+SettingsService:GetSettings,UpdateSettings,ResetSettings,GetUserSettings,GetSystemSettings
+Shipment
+ShippingService:CreateShipment,GetShipment,UpdateShipment,TrackShipment,CalculateShipping
+Stage
+State
+Status
+Step
+StorageService:Store,Retrieve,Delete,List
+StorageService:Store,Retrieve,Delete,List,GetMetadata,UpdateMetadata
+Store
+Stream
+StreamService:Subscribe,Unsubscribe,Stream,GetStream,ListStreams
+Style
+Subscriber
+Subscription
+SubscriptionService:Subscribe,Unsubscribe,GetSubscription
+Support
+Sync
+System
+SystemService:GetSystemInfo,GetSystemStatus
+SystemService:GetSystemInfo,GetSystemStatus,GetSystemHealth,RestartSystem,ShutdownSystem
+Table
+Task
+TaskService:CreateTask,GetTask,ListTasks,UpdateTask,CompleteTask,AssignTask
+Tax
+Team
+Template
+TestService:Test,RunTest,GetTestStatus
+Theme
+Thread
+Ticket
+Timer
+Token
+TokenService:GenerateToken,ValidateToken,RefreshToken,RevokeToken
+Topic
+Transaction
+Transfer
+Translation
+Trigger
+Url
+UsageService:GetUsage,RecordUsage,GetUsageReport
+User
+User:Get,Create,Update,Delete,List
+UserService:GetUser,CreateUser,UpdateUser,DeleteUser,ListUsers
+UserService:GetUser,GetUserById,GetUserByEmail,ListUsers,CreateUser,UpdateUser,DeleteUser,SearchUsers,GetProfile,UpdateProfile
+Variable
+Version
+View
+Volume
+Webhook
+Widget
+Work
+Worker
+WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
+account.v1.AccountService                # Account management
+account.v1.ProfileService                # Profile management
+admin.AdminService:GetSystemInfo,GetUsers,ManageUser,GetLogs,GetMetrics,ExecuteCommand
+ai.v1.AIService                          # AI service
+ai.v1.ComputerVisionService              # Computer vision
+ai.v1.NLPService                         # Natural language processing
+ai.v1.RecommendationService              # Recommendation service
+analytics.AnalyticsService:TrackEvent,GetAnalytics,GetReport,GetMetrics,GetEvents
+analytics.v1.AnalyticsService            # Analytics service
+analytics.v1.DashboardService            # Dashboard service
+analytics.v1.EventTrackingService        # Event tracking
+analytics.v1.LoggingService              # Logging service
+analytics.v1.MetricsService              # Metrics service
+analytics.v1.ReportingService            # Reporting service
+api.v1.APIGatewayService                 # API Gateway service
+api.v1.APIKeyService                     # API key management
+api.v1.ProxyService                      # Proxy service
+api.v1.RateLimitingService               # Rate limiting
+api.v1.Service
+api.v1.ThrottlingService                 # Throttling service
+auth.Auth:Login,Logout,Authenticate,ValidateToken,RefreshToken
+auth.AuthService:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken,RevokeToken,GetPermissions
+auth.v1.AuthService                      # Generic auth service
+auth.v1.AuthService:Login,Logout,Authenticate,ValidateToken,RefreshToken
+auth.v1.JWTService                       # JWT token service
+auth.v1.LoginService                     # Login service
+auth.v1.MFAService                       # Multi-factor authentication
+auth.v1.OAuthService                     # OAuth specific auth
+auth.v1.PermissionService                # Permission management
+auth.v1.RegistrationService              # User registration
+auth.v1.RoleService                      # Role management 
+auth.v1.SessionService                   # Session management
+auth.v1.TokenService                     # Token management
+backup.v1.BackupService                  # Backup management
+basket.v1.BasketCheckoutService          # Basket checkout
+basket.v1.BasketItemService              # Basket items
+basket.v1.BasketPricingService           # Basket pricing calculations
+basket.v1.BasketService                  # Basket management
+blockchain.indexer.api.BlockchainService
+blockchain.v1.BlockchainService          # Blockchain service
+blockchain.v1.NFTService                 # NFT management
+blockchain.v1.SmartContractService       # Smart contract interaction
+blockchain.v1.TokenService               # Token management
+blockchain.v1.TransactionService         # Blockchain transactions
+blockchain.v1.WalletService              # Crypto wallet
+blog.v1.BlogService                      # Blog management
+calendar.v1.AppointmentService           # Appointment booking
+calendar.v1.AvailabilityService          # Availability management
+calendar.v1.CalendarService              # Calendar management
+calendar.v1.EventService                 # Event management
+calendar.v1.ReminderService              # Reminder service
+calendar.v1.ScheduleService              # Schedule management
+cart.v1.CartCheckoutService              # Cart checkout
+cart.v1.CartItemService                  # Cart items
+cart.v1.CartPricingService               # Cart pricing calculations
+cart.v1.CartService                      # Cart management
+category.v1.CategoryService              # Category management
+cms.v1.CMSService                        # CMS service
+communication.v1.CommunicationService    # Communication service
+config.ConfigService:GetConfig,SetConfig,UpdateConfig,DeleteConfig,GetAllConfigs
+config.v1.AppConfigService               # Application configuration
+config.v1.ConfigService                  # Configuration management
+config.v1.EnvironmentService             # Environment configuration
+config.v1.FeatureFlagService             # Feature flag management
+config.v1.LocaleService                  # Localization settings
+config.v1.SettingsService                # Settings management
+config.v1.ThemeService                   # Theme configuration
+connect.v1.ConnectService                # Generic connection service
+connect.v1.ConnectionManagerService      # Connection management
+consul.v1.ConsulService                                  # Consul service discovery
+content.v1.ContentModerationService      # Content moderation
+content.v1.ContentPublishingService      # Content publishing
+content.v1.ContentService                # Content management
+customer.v1.CustomerProfileService       # Customer profile
+customer.v1.CustomerService              # Customer management
+dapr.proto.runtime.v1.DaprService                        # Dapr runtime
+data.DataService:Get,List,Create,Update,Delete,Query,Export,Import
+devops.v1.BuildService                   # Build management
+devops.v1.CDService                      # Continuous deployment
+devops.v1.CIService                      # Continuous integration
+devops.v1.DeploymentService              # Deployment management
+devops.v1.InfrastructureService          # Infrastructure management
+devops.v1.LoggingService                 # Logging service
+devops.v1.MonitoringService              # Monitoring service
+devops.v1.ObservabilityService           # Observability service
+document.v1.DocumentService              # Document management
+document.v1.DocumentUploadService        # Document upload
+echo.Echo
+echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+ecommerce.v1.BasketService               # Shopping basket
+ecommerce.v1.CartService                 # Shopping cart
+ecommerce.v1.CatalogService              # Catalog management
+ecommerce.v1.CheckoutService             # Checkout process
+ecommerce.v1.DeliveryService             # Delivery management
+ecommerce.v1.InventoryService            # Inventory management
+ecommerce.v1.OrderService                # Order management
+ecommerce.v1.ProductService              # Product management
+ecommerce.v1.ReturnService               # Returns management
+ecommerce.v1.ReviewService               # Product reviews
+ecommerce.v1.ShippingService             # Shipping management
+ecommerce.v1.WishlistService             # Wishlist management
+envoy.service.cluster.v3.ClusterDiscoveryService         # Envoy proxy
+envoy.service.discovery.v3.AggregatedDiscoveryService    # Envoy proxy
+etcd.v3.KVService                                        # etcd key-value store
+event.v1.CalendarService                 # Calendar management
+event.v1.EventAttendeeService            # Event attendees
+event.v1.EventRegistrationService        # Event registration
+event.v1.EventSchedulingService          # Event scheduling
+event.v1.EventService                    # Event management
+event.v1.EventTicketingService           # Event ticketing
+event.v1.LiveEventService                # Live event management
+event.v1.MeetingService                  # Meeting management
+event.v1.NotificationService             # Event notifications
+event.v1.ReminderService                 # Event reminders
+event.v1.WebinarService                  # Webinar management
+file.FileService:UploadFile,DownloadFile,DeleteFile,GetFileInfo,ListFiles,MoveFile,CopyFile
+file.v1.FileDownloadService              # File download
+file.v1.FileService                      # File management
+file.v1.FileStorageService               # File storage
+file.v1.FileTransferService              # File transfer
+file.v1.FileUploadService                # File upload
+game.v1.GameService                      # Game service
+game.v1.GameStateService                 # Game state management
+game.v1.InventoryService                 # Game inventory
+game.v1.LeaderboardService               # Leaderboard
+game.v1.MatchmakingService               # Matchmaking
+game.v1.PlayerService                    # Player management
+gateway.GatewayService:Route,Forward,Transform,Authenticate,RateLimit
+geo.v1.AddressService                    # Address management
+geo.v1.GeocodingService                  # Geocoding service
+geo.v1.GeolocationService                # Geolocation service
+geo.v1.LocationService                   # Location management
+geo.v1.MappingService                    # Mapping service
+geo.v1.RouteService                      # Route calculation
+grpc.admin.v1.Admin                      # Admin service
+grpc.binarylog.v1.Sink:Write
+grpc.channelz.v1.Channelz               # Channel info service
+grpc.channelz.v1.Channelz:GetTopChannels,GetServers,GetServer,GetServerSockets,GetChannel,GetSubchannel,GetSocket
+grpc.examples.echo.Echo
+grpc.examples.echo.Echo:UnaryEcho
+grpc.examples.echo.Echo:UnaryEcho,BidirectionalStreamingEcho
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+grpc.examples.echo.Echo:UnaryEcho,StreamingEcho
+grpc.gateway.protoc_gen_openapiv2.options.OpenAPIOptions # gRPC Gateway
+grpc.health.v1.Health
+grpc.health.v1.Health                    # Health checking
+grpc.health.v1.Health:Check,Watch
+grpc.instrumentation.v1.Instrumentation  # Instrumentation
+grpc.lb.v1.LoadBalancer                  # Load balancer
+grpc.reflection.v1.ServerReflection      # Server reflection v1
+grpc.reflection.v1.ServerReflection:ServerReflectionInfo
+grpc.reflection.v1alpha.ServerReflection
+grpc.reflection.v1alpha.ServerReflection # Server reflection
+grpc.reflection.v1alpha.ServerReflection:ServerReflectionInfo
+grpc.service_config.ServiceConfig        # Service config
+grpc.status.v1.Status                    # Status service
+health.v1.AppointmentService             # Medical appointments
+health.v1.DoctorService                  # Doctor management
+health.v1.FitnessService                 # Fitness service
+health.v1.HealthService                  # Health service
+health.v1.MedicalRecordService           # Medical records
+health.v1.PatientService                 # Patient management
+helloworld.Greeter
+helloworld.Greeter:SayHello
+helloworld.Greeter:SayHello,SayHelloAgain
+iam.v1.IAMService                        # Identity and access management
+identity.v1.IdentityService              # Identity management
+identity.v1.UserIdentityService          # User identity
+iot.v1.DeviceProvisioningService         # Device provisioning
+iot.v1.DeviceRegistryService             # Device registry
+iot.v1.DeviceService                     # Device management
+iot.v1.IoTService                        # IoT service
+iot.v1.SensorService                     # Sensor management
+iot.v1.TelemetryService                  # Telemetry data
+istio.networking.v1alpha3.GatewayService                 # Istio service mesh
+job.v1.BatchService                      # Batch processing
+job.v1.JobService                        # Job management
+job.v1.QueueService                      # Queue management
+job.v1.SchedulerService                  # Job scheduling
+job.v1.TaskService                       # Task management
+job.v1.WorkflowService                   # Workflow management
+kubernetes.v1.KubernetesService                          # Kubernetes API
+media.v1.MediaService                    # Media management
+media.v1.MediaUploadService              # Media upload
+member.v1.MemberProfileService           # Member profile
+member.v1.MemberService                  # Member management
+member.v1.MembershipTypeService          # Membership types
+membership.v1.MembershipService          # Membership management
+messaging.v1.MessagingService            # Messaging service
+ml.v1.InferenceService                   # Model inference
+ml.v1.MLService                          # Machine learning service
+ml.v1.ModelService                       # Model management
+ml.v1.PredictionService                  # Prediction service
+ml.v1.TrainingService                    # Model training
+network.v1.DiagnosticsService            # Network diagnostics
+network.v1.HeartbeatService              # Heartbeat service
+network.v1.PingService                   # Ping service
+network.v1.StatusService                 # Network status service
+notification.NotificationService:SendNotification,GetNotifications,MarkAsRead,DeleteNotification,GetUnreadCount
+notification.v1.AlertService             # Alert management
+notification.v1.EmailService             # Email notifications
+notification.v1.NotificationService      # Notification management
+notification.v1.PushNotificationService  # Push notifications
+notification.v1.SMSService               # SMS notifications
+notification.v1.WebhookService           # Webhook management
+order.OrderService:CreateOrder,GetOrder,ListOrders,UpdateOrder,CancelOrder,GetOrderStatus,GetOrderHistory
+order.v1.InvoiceService                  # Invoice management
+order.v1.OrderFulfillmentService         # Order fulfillment
+order.v1.OrderHistoryService             # Order history
+order.v1.OrderItemService                # Order items
+order.v1.OrderPaymentService             # Order payments
+order.v1.OrderReturnService              # Order returns
+order.v1.OrderService                    # Order management
+order.v1.OrderStatusService              # Order status
+order.v1.OrderTrackingService            # Order tracking
+payment.v1.BillingService                # Billing management
+payment.v1.InvoiceService                # Invoice management
+payment.v1.PaymentGatewayService         # Payment gateway integration
+payment.v1.PaymentService                # Payment processing
+payment.v1.PricingService                # Pricing management
+payment.v1.RefundService                 # Refund processing
+payment.v1.SubscriptionService           # Subscription management
+payment.v1.TaxService                    # Tax calculation
+payment.v1.TransactionService            # Transaction management
+payment.v1.WalletService                 # Digital wallet
+ping.Ping:Ping
+product.ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct,SearchProducts,GetProductsByCategory
+product.v1.ProductCatalogService         # Product catalog
+product.v1.ProductCategoryService        # Product categories
+product.v1.ProductInventoryService       # Product inventory
+product.v1.ProductPricingService         # Product pricing
+product.v1.ProductRecommendationService  # Product recommendations
+product.v1.ProductReviewService          # Product reviews
+product.v1.ProductSearchService          # Product search
+product.v1.ProductService                # Product management
+product.v1.ProductVariantService         # Product variants
+prometheus.v1.PrometheusService                          # Prometheus monitoring
+proto.AuthService:ValidateAPIKey,CreateToken,ValidateToken
+proto.HelloService
+proto.HelloService:SayHello,StreamHello
+proto.PingService
+proto.PingService:Ping
+proto.SecureService:GetSecretData,ListSecrets
+proto.UserService:Login,Register,GetProfile
+review.v1.FeedbackService                # Feedback management
+review.v1.ProductReviewService           # Product reviews
+review.v1.ReviewModerationService        # Review moderation
+review.v1.ReviewRatingService            # Review ratings
+review.v1.ReviewService                  # Review management
+review.v1.ServiceReviewService           # Service reviews
+review.v1.UserReviewService              # User reviews
+routeguide.RouteGuide
+routeguide.RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+search.SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
+search.v1.AutocompleteService            # Autocomplete suggestions
+search.v1.ContentSearchService           # Content search
+search.v1.FacetService                   # Search facets
+search.v1.GlobalSearchService            # Global search
+search.v1.IndexService                   # Search indexing
+search.v1.ProductSearchService           # Product search
+search.v1.QuerySuggestionService         # Query suggestions
+search.v1.SearchAnalyticsService         # Search analytics
+search.v1.SearchService                  # Search service
+search.v1.UserSearchService              # User search
+security.SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
+service.ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
+service.v1.Service
+service.v1.ServiceDiscoveryService       # Service discovery
+social.v1.ChatService                    # Chat service
+social.v1.CommentService                 # Comment management
+social.v1.FeedService                    # Social feed
+social.v1.FollowService                  # Follow/following management
+social.v1.FriendService                  # Friend management
+social.v1.GroupChatService               # Group chat
+social.v1.LikeService                    # Like management
+social.v1.MessageService                 # Messaging
+social.v1.PostService                    # Post management
+social.v1.ShareService                   # Share management
+sso.v1.SSOService                        # Single sign-on service
+statistics.v1.StatisticsService          # Statistics service
+storage.v1.BlobStorageService            # Blob storage
+storage.v1.ObjectStorageService          # Object storage
+storage.v1.StorageService                # Storage management
+stream.StreamService:Subscribe,Unsubscribe,Stream,GetStream,ListStreams
+streaming.v1.AudioStreamingService       # Audio streaming
+streaming.v1.BroadcastService            # Broadcasting service
+streaming.v1.LiveStreamingService        # Live streaming
+streaming.v1.StreamingService            # Generic streaming
+streaming.v1.VideoStreamingService       # Video streaming
+tag.v1.TagService                        # Tag management
+temporal.api.workflowservice.v1.WorkflowService          # Temporal workflow
+user.User:Get,Create,Update,Delete,List
+user.UserService:GetUser,GetUserById,GetUserByEmail,ListUsers,CreateUser,UpdateUser,DeleteUser,SearchUsers,GetProfile,UpdateProfile
+user.v1.UserGroupService                 # User groups management
+user.v1.UserPreferenceService            # User preferences
+user.v1.UserProfileService               # User profile management
+user.v1.UserRoleService                  # User roles
+user.v1.UserService                      # User management
+user.v1.UserService:GetUser,CreateUser,UpdateUser,DeleteUser,ListUsers
+users.Users:Get,List,Create,Update,Delete,Search
+v1.Service
+workflow.WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
+
+# Method patterns (start with *)
+*Authenticate
+*Authorize
+*CreateToken
+*GetSecretData
+*ListSecrets
+*Login
+*Logout
+*ValidateAPIKey
+*ValidateToken

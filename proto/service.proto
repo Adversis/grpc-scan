@@ -126,4 +126,73 @@ message PingResponse {
   string message = 1;
   string timestamp = 2;
   string server_version = 3;
+}
+
+// AuthService provides authentication functionality
+service AuthService {
+  rpc ValidateAPIKey(ValidateAPIKeyRequest) returns (ValidateAPIKeyResponse) {}
+  rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse) {}
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse) {}
+}
+
+message ValidateAPIKeyRequest {
+  string api_key = 1;
+}
+
+message ValidateAPIKeyResponse {
+  bool valid = 1;
+  string error = 2;
+}
+
+message CreateTokenRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message CreateTokenResponse {
+  bool success = 1;
+  string token = 2;
+  int32 expires_in = 3;
+  string error = 4;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  bool valid = 1;
+  string username = 2;
+  string error = 3;
+}
+
+// SecureService requires authentication
+service SecureService {
+  rpc GetSecretData(SecretRequest) returns (SecretResponse) {}
+  rpc ListSecrets(ListSecretsRequest) returns (ListSecretsResponse) {}
+}
+
+message SecretRequest {
+  string resource_id = 1;
+}
+
+message SecretResponse {
+  string data = 1;
+  string classification = 2;
+}
+
+message ListSecretsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListSecretsResponse {
+  repeated SecretInfo secrets = 1;
+  int32 total = 2;
+}
+
+message SecretInfo {
+  string id = 1;
+  string name = 2;
+  string created_at = 3;
 } 

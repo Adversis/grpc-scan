@@ -71,9 +71,15 @@ type ServicePattern struct {
 
 func main() {
 	// Check for subcommands
-	if len(os.Args) > 1 && os.Args[1] == "wordlist" {
-		runWordlistCommand(os.Args[2:])
-		return
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "wordlist":
+			runWordlistCommand(os.Args[2:])
+			return
+		case "detect":
+			runDetectCommand(os.Args[2:])
+			return
+		}
 	}
 
 	var (
@@ -85,6 +91,9 @@ func main() {
 		wordlist    = flag.String("wordlist", "", "Path to wordlist file for service brute forcing")
 		methodsList = flag.String("methods", "", "Path to methods wordlist (optional)")
 		threads     = flag.Int("threads", 10, "Number of concurrent threads for brute forcing")
+		call        = flag.String("call", "", "Call a specific method on a service (format: Service/Method or Service.Method)")
+		service     = flag.String("service", "", "Test whether a specific service exists (can specify multiple with commas)")
+		method      = flag.String("method", "", "Test specific methods (can specify multiple with commas)")
 		help        = flag.Bool("help", false, "Show help message")
 		h           = flag.Bool("h", false, "Show help message")
 	)
@@ -96,16 +105,30 @@ func main() {
 		fmt.Println("gRPC Scanner - A tool for discovering gRPC services and methods")
 		fmt.Println("\nUsage:")
 		fmt.Println("  grpc-scanner [options]                    Scan a gRPC target")
+		fmt.Println("  grpc-scanner detect [options]             Detect gRPC services on multiple targets")
 		fmt.Println("  grpc-scanner wordlist [options]           Generate wordlist from API docs")
 		fmt.Println("\nScanning Options:")
 		flag.PrintDefaults()
+		fmt.Println("\nDetection Mode:")
+		fmt.Println("  grpc-scanner detect -targets=domains.txt -threads=100")
+		fmt.Println("  cat targets.txt | grpc-scanner detect -output=grpc_services.txt")
 		fmt.Println("\nWordlist Generation:")
 		fmt.Println("  grpc-scanner wordlist -url=https://api.example.com/docs -output=wordlist.txt")
 		fmt.Println("  grpc-scanner wordlist -input=api_docs.html -output=wordlist.txt")
 		fmt.Println("\nExamples:")
 		fmt.Println("  grpc-scanner -target=api.example.com:443")
-		fmt.Println("  grpc-scanner -target=api.example.com:443 -wordlist=data/grpc_common.txt")
-		fmt.Println("  grpc-scanner -target=api.example.com:443 -wordlist=services.txt -methods=data/methods_comprehensive.txt")
+		fmt.Println("  grpc-scanner -target=api.example.com:443 -wordlist=data/grpc_wordlist.txt")
+		fmt.Println("  grpc-scanner detect -targets=domains.txt -threads=200 -output=grpc_targets.txt")
+		fmt.Println("\nDirect Testing (no protobuf files needed!):")
+		fmt.Println("  grpc-scanner -target=api.example.com:443 -call=UserService/GetUser")
+		fmt.Println("  grpc-scanner -target=api.example.com:443 -service=UserService -method=GetUser,ListUsers")
+		fmt.Println("  grpc-scanner -target=api.example.com:443 -service=UserService,AuthService")
+		return
+	}
+
+	// Handle direct call mode
+	if *call != "" {
+		handleDirectCall(*target, *call, time.Duration(*timeout)*time.Second, *verbose)
 		return
 	}
 
@@ -123,6 +146,13 @@ func main() {
 			MethodsFound:      make(map[string][]string),
 			Timestamp:         time.Now().Format(time.RFC3339),
 		},
+	}
+
+	// Handle direct service/method testing
+	if *service != "" || *method != "" {
+		scanner.handleDirectTesting(*service, *method)
+		scanner.PrintResults()
+		return
 	}
 
 	// Run scan
@@ -679,7 +709,8 @@ func (s *Scanner) checkMethod(ctx context.Context, service, method string) bool 
 	// Method exists if we get parameter/auth errors
 	switch st.Code() {
 	case codes.InvalidArgument, codes.FailedPrecondition,
-		codes.Unauthenticated, codes.PermissionDenied:
+		codes.Unauthenticated, codes.PermissionDenied,
+		codes.Internal:
 		return true
 	}
 
@@ -754,16 +785,6 @@ func (s *Scanner) PrintResults() {
 
 	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
 
-	if len(s.result.AvailableServices) == 0 {
-		fmt.Println("No services discovered")
-		fmt.Println("\nPossible reasons:")
-		fmt.Println("  • Services require authentication")
-		fmt.Println("  • Non-standard service naming")
-		fmt.Println("  • Services are hidden/not enumerable")
-		fmt.Println("\nTry using a custom wordlist with -wordlist option")
-		return
-	}
-
 	fmt.Println("Discovered Services:")
 	for _, service := range s.result.AvailableServices {
 		fmt.Printf("\n%s\n", service)
@@ -798,5 +819,162 @@ func (s *Scanner) SaveResults(filename string) {
 
 	if s.verbose {
 		log.Printf("Results saved to %s", filename)
+	}
+}
+
+// handleDirectCall handles the -call flag for direct method invocation
+func handleDirectCall(target, call string, timeout time.Duration, verbose bool) {
+	// Parse the call format (Service/Method or Service.Method)
+	var service, method string
+	if strings.Contains(call, "/") {
+		parts := strings.SplitN(call, "/", 2)
+		service = parts[0]
+		if len(parts) > 1 {
+			method = parts[1]
+		}
+	} else if strings.Contains(call, ".") {
+		// Find the last dot to separate service and method
+		lastDot := strings.LastIndex(call, ".")
+		service = call[:lastDot]
+		method = call[lastDot+1:]
+	} else {
+		log.Fatalf("Invalid call format. Use Service/Method or Service.Method")
+	}
+
+	if method == "" {
+		log.Fatalf("Method name is required in call format")
+	}
+
+	// Connect to the server
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	conn, err := grpc.DialContext(ctx, target, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("Failed to connect: %v", err)
+	}
+	defer conn.Close()
+
+	fmt.Printf("[+] Testing %s/%s on %s\n", service, method, target)
+
+	// Try to invoke the method
+	fullMethod := fmt.Sprintf("/%s/%s", service, method)
+	err = conn.Invoke(ctx, fullMethod, nil, nil)
+
+	if err == nil {
+		fmt.Printf("[+] Success: Method exists (may require proper request message)\n")
+		return
+	}
+
+	// Analyze the error
+	if st, ok := status.FromError(err); ok {
+		switch st.Code() {
+		case codes.Unimplemented:
+			if strings.Contains(strings.ToLower(st.Message()), "unknown service") {
+				fmt.Printf("[-] Service '%s' not found\n", service)
+			} else if strings.Contains(strings.ToLower(st.Message()), "unknown method") {
+				fmt.Printf("[+] Service '%s' exists but method '%s' not found\n", service, method)
+			} else {
+				fmt.Printf("[-] Unimplemented: %v\n", st.Message())
+			}
+		case codes.InvalidArgument:
+			fmt.Printf("[+] Method exists! (requires proper request message)\n")
+			fmt.Printf("    Error: %v\n", st.Message())
+		case codes.Unauthenticated:
+			fmt.Printf("[+] Method exists but requires authentication\n")
+			fmt.Printf("    Error: %v\n", st.Message())
+		case codes.PermissionDenied:
+			fmt.Printf("[+] Method exists but access denied\n")
+			fmt.Printf("    Error: %v\n", st.Message())
+		case codes.Internal:
+			fmt.Printf("[?] Internal error (method may exist)\n")
+			fmt.Printf("    Error: %v\n", st.Message())
+		default:
+			fmt.Printf("[?] Error: %v (code: %v)\n", st.Message(), st.Code())
+		}
+	} else {
+		fmt.Printf("[-] Non-gRPC error: %v\n", err)
+	}
+}
+
+// handleDirectTesting handles the -service and -method flags
+func (s *Scanner) handleDirectTesting(services, methods string) {
+	ctx, cancel := context.WithTimeout(context.Background(), s.timeout)
+	defer cancel()
+
+	fmt.Printf("[+] Direct testing on %s...\n", s.target)
+
+	// Connect to server
+	conn, err := grpc.DialContext(ctx, s.target, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("Failed to connect: %v", err)
+	}
+	defer conn.Close()
+	s.conn = conn
+
+	// Wait for connection
+	if !s.waitForConnection(ctx) {
+		log.Fatalf("Failed to establish gRPC connection")
+	}
+
+	// Parse services and methods
+	serviceList := []string{}
+	methodList := []string{}
+
+	if services != "" {
+		serviceList = strings.Split(services, ",")
+		for i := range serviceList {
+			serviceList[i] = strings.TrimSpace(serviceList[i])
+		}
+	}
+
+	if methods != "" {
+		methodList = strings.Split(methods, ",")
+		for i := range methodList {
+			methodList[i] = strings.TrimSpace(methodList[i])
+		}
+	}
+
+	s.result.ScanMode = "direct"
+
+	// If only methods specified, try common service patterns
+	if len(serviceList) == 0 && len(methodList) > 0 {
+		fmt.Println("[+] No services specified, will try common patterns with provided methods")
+		// Generate common patterns
+		for _, pattern := range commonPatterns {
+			serviceList = append(serviceList, pattern.Service)
+		}
+	}
+
+	// Test each service
+	for _, service := range serviceList {
+		if service == "" {
+			continue
+		}
+
+		// If no methods specified, try common methods
+		testMethods := methodList
+		if len(testMethods) == 0 {
+			testMethods = []string{"Get", "List", "Create", "Update", "Delete", "Check", "Ping"}
+		}
+
+		// Test the service with first method
+		if s.checkService(ctx, service, testMethods[0]) {
+			s.addService(service, "direct")
+
+			// Test all methods
+			for _, method := range testMethods {
+				if s.checkMethod(ctx, service, method) {
+					s.addMethod(service, method)
+					if s.verbose {
+						fmt.Printf("   [+] %s/%s exists\n", service, method)
+					}
+				} else if s.verbose {
+					fmt.Printf("   [-] %s/%s not found\n", service, method)
+				}
+			}
+		} else if s.verbose {
+			fmt.Printf("   [-] Service '%s' not found\n", service)
+		}
 	}
 }
