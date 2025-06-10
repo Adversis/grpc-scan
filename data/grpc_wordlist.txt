@@ -1,7 +1,32 @@
-# Combined gRPC Wordlist
-# Generated from all wordlist files
-# Format: service_name or service_name:method1,method2,...
-
+*Archive
+*Authenticate
+*Authorize
+*BulkCreate
+*BulkDelete
+*BulkUpdate
+*BypassCache
+*CreateToken
+*DryRun
+*ExecuteRaw
+*Export
+*ForceRefresh
+*GetDebug
+*GetDiagnostics
+*GetInternal
+*GetMetadata
+*GetSecretData
+*Import
+*ListSecrets
+*Login
+*Logout
+*Migrate
+*Preview
+*Restore
+*SetMetadata
+*Sync
+*Validate
+*ValidateAPIKey
+*ValidateToken
 API
 APIGateway:Route,Forward,Process
 Account
@@ -80,11 +105,13 @@ DataService:Get,List,Create,Update,Delete,Query,Export,Import
 Database
 DatabaseService:Query,Execute,GetSchema,Migrate,Backup,Restore
 DebugService:Debug,GetDebugInfo,SetDebugLevel
+DebugService:SetLogLevel,GetDebugInfo,EnableProfiling,GetMemoryStats
 Delivery
 Department
 Deploy
 Deployment
 Device
+DiagnosticsService:GetStackTrace,GetHeapDump,GetThreadDump,GetSystemInfo
 Discount
 DiscoveryService:Discover,Register,Deregister,GetServices,GetEndpoints
 Distribution
@@ -133,6 +160,7 @@ Import
 Index
 Instance
 Integration
+InternalService:ExecuteQuery,RunCommand,GetInternalStatus
 InventoryService:GetInventory,UpdateInventory,CheckAvailability,ReserveItems,ReleaseItems
 Invoice
 Issue
@@ -151,6 +179,7 @@ LoggingService:Log,GetLogs,SearchLogs,GetLogLevel,SetLogLevel
 Loyalty
 Main
 MainService:Execute,Process,Handle
+MaintenanceService:TriggerGC,ResetCache,ReloadConfig,RestartService
 Management
 ManagementService:GetStatus,GetHealth,GetMetrics,ManageService,RestartService
 ManagementService:Manage,Control,Configure
@@ -167,6 +196,7 @@ Migration
 Module
 Monitor
 MonitorService:Monitor,GetMetrics,GetStatus
+MonitoringService:GetMetrics,GetTraces,GetProfiles,ExportData
 MonitoringService:GetStatus,GetHealth,GetMetrics,GetAlerts,CreateAlert
 Network
 Node
@@ -205,6 +235,7 @@ ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct
 ProductService:GetProduct,ListProducts,SearchProducts
 Profile
 ProfileService:GetProfile,UpdateProfile,DeleteProfile,GetProfilePicture,UpdateProfilePicture
+ProfilingService:StartProfiling,StopProfiling,GetProfile,GetFlameGraph
 Project
 Promotion
 Property
@@ -246,9 +277,17 @@ Schema
 SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
 Secret
 SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
+Serivce
+Servcie
 Server
 Service
+Service2
+ServiceNew
+ServiceOld
 ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
+ServiceTemp
+ServiceTest
+ServiceV2
 SessionService:CreateSession,GetSession,UpdateSession,DeleteSession,ValidateSession
 Setting
 SettingsService:GetSettings,UpdateSettings,ResetSettings,GetUserSettings,GetSystemSettings
@@ -268,6 +307,7 @@ Subscriber
 Subscription
 SubscriptionService:Subscribe,Unsubscribe,GetSubscription
 Support
+Svc
 Sync
 System
 SystemService:GetSystemInfo,GetSystemStatus
@@ -307,11 +347,14 @@ Worker
 WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
 account.v1.AccountService                # Account management
 account.v1.ProfileService                # Profile management
+achievement.v1.AchievementService:UnlockAchievement,GetAchievements,GetProgress
 admin.AdminService:GetSystemInfo,GetUsers,ManageUser,GetLogs,GetMetrics,ExecuteCommand
 ai.v1.AIService                          # AI service
 ai.v1.ComputerVisionService              # Computer vision
 ai.v1.NLPService                         # Natural language processing
 ai.v1.RecommendationService              # Recommendation service
+alpha.Service
+aml.v1.AMLService:CheckTransaction,ReportSuspiciousActivity,GetRiskScore
 analytics.AnalyticsService:TrackEvent,GetAnalytics,GetReport,GetMetrics,GetEvents
 analytics.v1.AnalyticsService            # Analytics service
 analytics.v1.DashboardService            # Dashboard service
@@ -338,11 +381,14 @@ auth.v1.RegistrationService              # User registration
 auth.v1.RoleService                      # Role management 
 auth.v1.SessionService                   # Session management
 auth.v1.TokenService                     # Token management
+aws.v1.AWSService
+azure.v1.AzureService
 backup.v1.BackupService                  # Backup management
 basket.v1.BasketCheckoutService          # Basket checkout
 basket.v1.BasketItemService              # Basket items
 basket.v1.BasketPricingService           # Basket pricing calculations
 basket.v1.BasketService                  # Basket management
+beta.Service
 blockchain.indexer.api.BlockchainService
 blockchain.v1.BlockchainService          # Blockchain service
 blockchain.v1.NFTService                 # NFT management
@@ -362,6 +408,7 @@ cart.v1.CartItemService                  # Cart items
 cart.v1.CartPricingService               # Cart pricing calculations
 cart.v1.CartService                      # Cart management
 category.v1.CategoryService              # Category management
+circuitbreaker.v1.CircuitBreakerService
 cms.v1.CMSService                        # CMS service
 communication.v1.CommunicationService    # Communication service
 config.ConfigService:GetConfig,SetConfig,UpdateConfig,DeleteConfig,GetAllConfigs
@@ -382,6 +429,7 @@ customer.v1.CustomerProfileService       # Customer profile
 customer.v1.CustomerService              # Customer management
 dapr.proto.runtime.v1.DaprService                        # Dapr runtime
 data.DataService:Get,List,Create,Update,Delete,Query,Export,Import
+deprecated.Service
 devops.v1.BuildService                   # Build management
 devops.v1.CDService                      # Continuous deployment
 devops.v1.CIService                      # Continuous integration
@@ -390,6 +438,7 @@ devops.v1.InfrastructureService          # Infrastructure management
 devops.v1.LoggingService                 # Logging service
 devops.v1.MonitoringService              # Monitoring service
 devops.v1.ObservabilityService           # Observability service
+dicom.v1.DICOMService:StoreImage,RetrieveImage,QueryImages
 document.v1.DocumentService              # Document management
 document.v1.DocumentUploadService        # Document upload
 echo.Echo
@@ -420,12 +469,16 @@ event.v1.MeetingService                  # Meeting management
 event.v1.NotificationService             # Event notifications
 event.v1.ReminderService                 # Event reminders
 event.v1.WebinarService                  # Webinar management
+eventbus.v1.EventBusService
+experimental.Service
+fhir.v1.FHIRService:GetPatient,GetObservation,CreateEncounter
 file.FileService:UploadFile,DownloadFile,DeleteFile,GetFileInfo,ListFiles,MoveFile,CopyFile
 file.v1.FileDownloadService              # File download
 file.v1.FileService                      # File management
 file.v1.FileStorageService               # File storage
 file.v1.FileTransferService              # File transfer
 file.v1.FileUploadService                # File upload
+forex.v1.ForexService:GetExchangeRate,ConvertCurrency,GetRateHistory
 game.v1.GameService                      # Game service
 game.v1.GameStateService                 # Game state management
 game.v1.InventoryService                 # Game inventory
@@ -433,6 +486,7 @@ game.v1.LeaderboardService               # Leaderboard
 game.v1.MatchmakingService               # Matchmaking
 game.v1.PlayerService                    # Player management
 gateway.GatewayService:Route,Forward,Transform,Authenticate,RateLimit
+gcp.v1.GCPService
 geo.v1.AddressService                    # Address management
 geo.v1.GeocodingService                  # Geocoding service
 geo.v1.GeolocationService                # Geolocation service
@@ -462,6 +516,7 @@ grpc.reflection.v1alpha.ServerReflection # Server reflection
 grpc.reflection.v1alpha.ServerReflection:ServerReflectionInfo
 grpc.service_config.ServiceConfig        # Service config
 grpc.status.v1.Status                    # Status service
+guild.v1.GuildService:CreateGuild,JoinGuild,GetGuildInfo,ManageMembers
 health.v1.AppointmentService             # Medical appointments
 health.v1.DoctorService                  # Doctor management
 health.v1.FitnessService                 # Fitness service
@@ -471,9 +526,11 @@ health.v1.PatientService                 # Patient management
 helloworld.Greeter
 helloworld.Greeter:SayHello
 helloworld.Greeter:SayHello,SayHelloAgain
+hl7.v1.HL7Service:ProcessMessage,ConvertFormat,ValidateMessage
 iam.v1.IAMService                        # Identity and access management
 identity.v1.IdentityService              # Identity management
 identity.v1.UserIdentityService          # User identity
+internal.Service
 iot.v1.DeviceProvisioningService         # Device provisioning
 iot.v1.DeviceRegistryService             # Device registry
 iot.v1.DeviceService                     # Device management
@@ -487,7 +544,14 @@ job.v1.QueueService                      # Queue management
 job.v1.SchedulerService                  # Job scheduling
 job.v1.TaskService                       # Task management
 job.v1.WorkflowService                   # Workflow management
+k8s.v1.KubernetesService
 kubernetes.v1.KubernetesService                          # Kubernetes API
+kyc.v1.KYCService:VerifyIdentity,GetVerificationStatus,UploadDocuments
+ledger.v1.LedgerService:RecordTransaction,GetBalance,GetTransactionHistory
+legacy.Service
+licensing.v1.LicensingService:CheckLicense,ActivateLicense,GetUsage
+loadbalancer.v1.LoadBalancerService
+loot.v1.LootService:GenerateLoot,OpenLootBox,GetDropRates
 media.v1.MediaService                    # Media management
 media.v1.MediaUploadService              # Media upload
 member.v1.MemberProfileService           # Member profile
@@ -500,6 +564,7 @@ ml.v1.MLService                          # Machine learning service
 ml.v1.ModelService                       # Model management
 ml.v1.PredictionService                  # Prediction service
 ml.v1.TrainingService                    # Model training
+mortgage.v1.MortgageService:CalculatePayment,GetPreApproval,SubmitApplication
 network.v1.DiagnosticsService            # Network diagnostics
 network.v1.HeartbeatService              # Heartbeat service
 network.v1.PingService                   # Ping service
@@ -511,6 +576,7 @@ notification.v1.NotificationService      # Notification management
 notification.v1.PushNotificationService  # Push notifications
 notification.v1.SMSService               # SMS notifications
 notification.v1.WebhookService           # Webhook management
+onboarding.v1.OnboardingService:StartOnboarding,GetProgress,CompleteStep
 order.OrderService:CreateOrder,GetOrder,ListOrders,UpdateOrder,CancelOrder,GetOrderStatus,GetOrderHistory
 order.v1.InvoiceService                  # Invoice management
 order.v1.OrderFulfillmentService         # Order fulfillment
@@ -531,7 +597,9 @@ payment.v1.SubscriptionService           # Subscription management
 payment.v1.TaxService                    # Tax calculation
 payment.v1.TransactionService            # Transaction management
 payment.v1.WalletService                 # Digital wallet
+pharmacy.v1.PharmacyService:CheckDrugInteraction,GetMedication,VerifyPrescription
 ping.Ping:Ping
+private.Service
 product.ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct,SearchProducts,GetProductsByCategory
 product.v1.ProductCatalogService         # Product catalog
 product.v1.ProductCategoryService        # Product categories
@@ -543,6 +611,7 @@ product.v1.ProductSearchService          # Product search
 product.v1.ProductService                # Product management
 product.v1.ProductVariantService         # Product variants
 prometheus.v1.PrometheusService                          # Prometheus monitoring
+property.v1.PropertyService:ListProperties,GetPropertyDetails,ScheduleViewing
 proto.AuthService:ValidateAPIKey,CreateToken,ValidateToken
 proto.HelloService
 proto.HelloService:SayHello,StreamHello
@@ -550,6 +619,8 @@ proto.PingService
 proto.PingService:Ping
 proto.SecureService:GetSecretData,ListSecrets
 proto.UserService:Login,Register,GetProfile
+provisioning.v1.ProvisioningService:ProvisionResource,DeprovisionResource
+ratelimiter.v1.RateLimiterService
 review.v1.FeedbackService                # Feedback management
 review.v1.ProductReviewService           # Product reviews
 review.v1.ReviewModerationService        # Review moderation
@@ -559,6 +630,7 @@ review.v1.ServiceReviewService           # Service reviews
 review.v1.UserReviewService              # User reviews
 routeguide.RouteGuide
 routeguide.RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+saga.v1.SagaCoordinatorService
 search.SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
 search.v1.AutocompleteService            # Autocomplete suggestions
 search.v1.ContentSearchService           # Content search
@@ -574,6 +646,8 @@ security.SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
 service.ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
 service.v1.Service
 service.v1.ServiceDiscoveryService       # Service discovery
+servicemesh.v1.ServiceMeshService
+settlement.v1.SettlementService:ProcessSettlement,GetSettlementStatus
 social.v1.ChatService                    # Chat service
 social.v1.CommentService                 # Comment management
 social.v1.FeedService                    # Social feed
@@ -597,6 +671,10 @@ streaming.v1.StreamingService            # Generic streaming
 streaming.v1.VideoStreamingService       # Video streaming
 tag.v1.TagService                        # Tag management
 temporal.api.workflowservice.v1.WorkflowService          # Temporal workflow
+tenant.v1.TenantService:CreateTenant,GetTenantInfo,UpdateTenantConfig
+terraform.v1.TerraformService
+tournament.v1.TournamentService:RegisterTeam,GetBracket,SubmitResult
+unstable.Service
 user.User:Get,Create,Update,Delete,List
 user.UserService:GetUser,GetUserById,GetUserByEmail,ListUsers,CreateUser,UpdateUser,DeleteUser,SearchUsers,GetProfile,UpdateProfile
 user.v1.UserGroupService                 # User groups management
@@ -606,16 +684,7 @@ user.v1.UserRoleService                  # User roles
 user.v1.UserService                      # User management
 user.v1.UserService:GetUser,CreateUser,UpdateUser,DeleteUser,ListUsers
 users.Users:Get,List,Create,Update,Delete,Search
+v0.Service
 v1.Service
+valuation.v1.ValuationService:GetPropertyValue,GetComparables,GenerateReport
 workflow.WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
-
-# Method patterns (start with *)
-*Authenticate
-*Authorize
-*CreateToken
-*GetSecretData
-*ListSecrets
-*Login
-*Logout
-*ValidateAPIKey
-*ValidateToken

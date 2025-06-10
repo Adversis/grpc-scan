@@ -4,7 +4,10 @@
 *.dll
 *.so
 *.dylib
+# Main binaries
 grpc-scanner
+grpc-scan
+grpc-scan-*
 
 # Test binary, built with `go test -c`
 *.test
