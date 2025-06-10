@@ -1,0 +1,415 @@
+# Comprehensive gRPC Wordlist
+# Based on grpc-go examples and common patterns
+# Format: ServiceName:method1,method2,method3 or just ServiceName
+
+# === Core gRPC Services ===
+grpc.health.v1.Health:Check,Watch
+grpc.reflection.v1alpha.ServerReflection:ServerReflectionInfo
+grpc.reflection.v1.ServerReflection:ServerReflectionInfo
+grpc.channelz.v1.Channelz:GetTopChannels,GetServers,GetServer,GetServerSockets,GetChannel,GetSubchannel,GetSocket
+grpc.binarylog.v1.Sink:Write
+
+# === grpc-go Examples Services ===
+# From helloworld example
+helloworld.Greeter:SayHello,SayHelloAgain
+Greeter:SayHello,SayHelloAgain
+
+# From route_guide example
+routeguide.RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+
+# From features examples
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+
+# From features/authentication
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+
+# From features/compression
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho
+
+# From features/deadline
+grpc.examples.echo.Echo:UnaryEcho,BidirectionalStreamingEcho
+
+# From features/encryption (TLS)
+grpc.examples.echo.Echo:UnaryEcho
+
+# From features/errors
+grpc.examples.echo.Echo:UnaryEcho
+
+# From features/interceptor
+grpc.examples.echo.Echo:UnaryEcho,StreamingEcho
+
+# From features/load_balancing
+grpc.examples.echo.Echo:UnaryEcho
+
+# From features/metadata
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+
+# From features/multiplex
+grpc.examples.echo.Echo:UnaryEcho,BidirectionalStreamingEcho
+helloworld.Greeter:SayHello
+
+# From features/name_resolving
+grpc.examples.echo.Echo:UnaryEcho
+
+# From features/retry
+grpc.examples.echo.Echo:UnaryEcho
+
+# From features/wait_for_ready
+grpc.examples.echo.Echo:UnaryEcho
+
+# === Common Service Patterns ===
+
+# Authentication/Authorization
+auth.AuthService:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken,RevokeToken,GetPermissions
+AuthService:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken,RevokeToken,GetPermissions
+Authentication:Login,Logout,Authenticate,Authorize,ValidateToken,RefreshToken
+Authorization:Authorize,CheckPermission,GetPermissions,GrantPermission,RevokePermission
+TokenService:GenerateToken,ValidateToken,RefreshToken,RevokeToken
+SessionService:CreateSession,GetSession,UpdateSession,DeleteSession,ValidateSession
+
+# User Management
+user.UserService:GetUser,GetUserById,GetUserByEmail,ListUsers,CreateUser,UpdateUser,DeleteUser,SearchUsers,GetProfile,UpdateProfile
+UserService:GetUser,GetUserById,GetUserByEmail,ListUsers,CreateUser,UpdateUser,DeleteUser,SearchUsers,GetProfile,UpdateProfile
+users.Users:Get,List,Create,Update,Delete,Search
+AccountService:CreateAccount,GetAccount,UpdateAccount,DeleteAccount,ListAccounts,GetAccountById
+ProfileService:GetProfile,UpdateProfile,DeleteProfile,GetProfilePicture,UpdateProfilePicture
+
+# Product/Catalog
+product.ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct,SearchProducts,GetProductsByCategory
+ProductService:GetProduct,ListProducts,CreateProduct,UpdateProduct,DeleteProduct,SearchProducts,GetProductsByCategory
+CatalogService:GetCatalog,ListItems,SearchCatalog,GetCategories,GetItemsByCategory
+InventoryService:GetInventory,UpdateInventory,CheckAvailability,ReserveItems,ReleaseItems
+
+# E-commerce
+order.OrderService:CreateOrder,GetOrder,ListOrders,UpdateOrder,CancelOrder,GetOrderStatus,GetOrderHistory
+OrderService:CreateOrder,GetOrder,ListOrders,UpdateOrder,CancelOrder,GetOrderStatus,GetOrderHistory
+CartService:GetCart,AddToCart,RemoveFromCart,UpdateCartItem,ClearCart,Checkout
+PaymentService:ProcessPayment,RefundPayment,GetPaymentStatus,GetPaymentMethods,ValidatePayment
+ShippingService:CreateShipment,GetShipment,UpdateShipment,TrackShipment,CalculateShipping
+CheckoutService:Checkout,CalculateTotals,ApplyDiscount,ValidateCheckout
+
+# Communication
+notification.NotificationService:SendNotification,GetNotifications,MarkAsRead,DeleteNotification,GetUnreadCount
+NotificationService:SendNotification,GetNotifications,MarkAsRead,DeleteNotification,GetUnreadCount
+EmailService:SendEmail,SendBulkEmail,GetEmailStatus,ValidateEmail
+MessageService:SendMessage,GetMessages,GetConversation,DeleteMessage,MarkAsRead
+ChatService:SendMessage,GetMessages,JoinRoom,LeaveRoom,GetRooms,CreateRoom
+
+# File/Media Management
+file.FileService:UploadFile,DownloadFile,DeleteFile,GetFileInfo,ListFiles,MoveFile,CopyFile
+FileService:UploadFile,DownloadFile,DeleteFile,GetFileInfo,ListFiles,MoveFile,CopyFile
+StorageService:Store,Retrieve,Delete,List,GetMetadata,UpdateMetadata
+MediaService:UploadMedia,GetMedia,DeleteMedia,TranscodeMedia,GetThumbnail
+ImageService:UploadImage,GetImage,DeleteImage,ResizeImage,GetThumbnail
+
+# Analytics/Monitoring
+analytics.AnalyticsService:TrackEvent,GetAnalytics,GetReport,GetMetrics,GetEvents
+AnalyticsService:TrackEvent,GetAnalytics,GetReport,GetMetrics,GetEvents
+MetricsService:GetMetrics,RecordMetric,GetMetricHistory,GetAggregatedMetrics
+LoggingService:Log,GetLogs,SearchLogs,GetLogLevel,SetLogLevel
+MonitoringService:GetStatus,GetHealth,GetMetrics,GetAlerts,CreateAlert
+
+# Search/Discovery
+search.SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
+SearchService:Search,SearchByQuery,SearchByFilters,GetSearchResults,GetSuggestions
+DiscoveryService:Discover,Register,Deregister,GetServices,GetEndpoints
+QueryService:Query,ExecuteQuery,GetQueryResults,SaveQuery,GetSavedQueries
+
+# Configuration/Settings
+config.ConfigService:GetConfig,SetConfig,UpdateConfig,DeleteConfig,GetAllConfigs
+ConfigService:GetConfig,SetConfig,UpdateConfig,DeleteConfig,GetAllConfigs
+SettingsService:GetSettings,UpdateSettings,ResetSettings,GetUserSettings,GetSystemSettings
+PreferenceService:GetPreferences,SetPreferences,UpdatePreferences,ResetPreferences
+
+# Admin/Management
+admin.AdminService:GetSystemInfo,GetUsers,ManageUser,GetLogs,GetMetrics,ExecuteCommand
+AdminService:GetSystemInfo,GetUsers,ManageUser,GetLogs,GetMetrics,ExecuteCommand
+ManagementService:GetStatus,GetHealth,GetMetrics,ManageService,RestartService
+SystemService:GetSystemInfo,GetSystemStatus,GetSystemHealth,RestartSystem,ShutdownSystem
+
+# Workflow/Process
+workflow.WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
+WorkflowService:StartWorkflow,GetWorkflow,ListWorkflows,CancelWorkflow,GetWorkflowStatus
+ProcessService:StartProcess,GetProcess,ListProcesses,StopProcess,GetProcessStatus
+TaskService:CreateTask,GetTask,ListTasks,UpdateTask,CompleteTask,AssignTask
+JobService:CreateJob,GetJob,ListJobs,CancelJob,GetJobStatus,RetryJob
+
+# Streaming Services
+stream.StreamService:Subscribe,Unsubscribe,Stream,GetStream,ListStreams
+StreamService:Subscribe,Unsubscribe,Stream,GetStream,ListStreams
+EventService:PublishEvent,SubscribeToEvents,GetEvents,GetEventHistory
+BroadcastService:Broadcast,Subscribe,Unsubscribe,GetSubscribers
+
+# API Gateway Patterns
+gateway.GatewayService:Route,Forward,Transform,Authenticate,RateLimit
+GatewayService:Route,Forward,Transform,Authenticate,RateLimit
+ProxyService:Proxy,Forward,Route,Transform,Cache
+ApiService:Call,Execute,Validate,Transform,Route
+
+# Microservice Communication
+service.ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
+ServiceRegistry:Register,Deregister,Discover,GetService,ListServices
+HealthService:Check,Watch,GetStatus,GetHealth
+DiscoveryService:Discover,Register,Deregister,GetServices,GetEndpoints
+
+# Data Services
+data.DataService:Get,List,Create,Update,Delete,Query,Export,Import
+DataService:Get,List,Create,Update,Delete,Query,Export,Import
+DatabaseService:Query,Execute,GetSchema,Migrate,Backup,Restore
+CacheService:Get,Set,Delete,Clear,GetKeys,Expire
+QueryService:Query,Execute,Prepare,GetResults,GetSchema
+
+# Security Services
+security.SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
+SecurityService:Authenticate,Authorize,Encrypt,Decrypt,Sign,Verify
+EncryptionService:Encrypt,Decrypt,GenerateKey,RotateKey,GetPublicKey
+AuditService:LogEvent,GetAuditLog,SearchAuditLog,GetAuditTrail
+
+# === Global Methods (prefix with *) ===
+*Get
+*GetById
+*GetByName
+*GetByEmail
+*GetByKey
+*List
+*ListAll
+*ListByFilter
+*Create
+*CreateBatch
+*Update
+*UpdatePartial
+*UpdateBatch
+*Delete
+*DeleteBatch
+*DeleteById
+*Search
+*SearchByQuery
+*Query
+*Find
+*FindById
+*FindByName
+*Count
+*Exists
+*Validate
+*Check
+*Verify
+*Execute
+*Run
+*Process
+*Handle
+*Submit
+*Send
+*Receive
+*Subscribe
+*Unsubscribe
+*Watch
+*Stream
+*Upload
+*Download
+*Import
+*Export
+*Sync
+*Refresh
+*Reset
+*Clear
+*Flush
+*Ping
+*Echo
+*Health
+*Status
+*Info
+*Version
+*Stats
+*Metrics
+
+# === Additional Service Names (without specific methods) ===
+# These will use default method discovery
+
+# Common service names
+Service
+Api
+Server
+Gateway
+Proxy
+Router
+Handler
+Controller
+Manager
+Provider
+Registry
+Repository
+Store
+Cache
+Queue
+Worker
+Processor
+Consumer
+Producer
+Publisher
+Subscriber
+
+# Business domains
+Customer
+Member
+Subscription
+Plan
+Feature
+License
+Billing
+Invoice
+Receipt
+Tax
+Discount
+Promotion
+Coupon
+Reward
+Point
+Loyalty
+Review
+Rating
+Comment
+Feedback
+Support
+Ticket
+Issue
+Project
+Team
+Organization
+Company
+Department
+Role
+Permission
+Resource
+Asset
+Location
+Address
+Contact
+Phone
+Device
+Token
+Key
+Certificate
+Credential
+Policy
+Rule
+Event
+Activity
+History
+Log
+Audit
+Report
+Dashboard
+Widget
+Component
+Module
+Plugin
+Extension
+Integration
+Webhook
+Callback
+Scheduler
+Timer
+Cron
+Batch
+Queue
+Topic
+Channel
+Room
+Thread
+Post
+Article
+Page
+Content
+Template
+Layout
+Theme
+Style
+Format
+Locale
+Language
+Translation
+Currency
+Price
+Rate
+Quote
+Contract
+Agreement
+Document
+Attachment
+Link
+Url
+Redirect
+Route
+Path
+Endpoint
+Method
+Function
+Action
+Command
+Request
+Response
+Result
+Error
+Exception
+Status
+State
+Phase
+Stage
+Step
+Task
+Job
+Work
+Operation
+Transaction
+Transfer
+Migration
+Backup
+Restore
+Archive
+Export
+Import
+Sync
+Replication
+Distribution
+Delivery
+Shipment
+Package
+Bundle
+Release
+Version
+Build
+Deploy
+Environment
+Instance
+Container
+Image
+Volume
+Network
+Cluster
+Node
+Pod
+Service
+Deployment
+Config
+Secret
+Variable
+Parameter
+Option
+Setting
+Preference
+Property
+Attribute
+Field
+Column
+Table
+Schema
+Index
+Query
+View
+Procedure
+Function
+Trigger
+Constraint

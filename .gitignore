@@ -14,7 +14,6 @@ grpc-scanner
 
 # Output files from the gRPC scanner
 scan_results.json
-*.json
 
 # Go workspace file
 go.work
@@ -51,3 +50,6 @@ __debug_bin
 # Temporary files
 /tmp/
 *.tmp scan_results.json
+
+.claude/
+.vscode/

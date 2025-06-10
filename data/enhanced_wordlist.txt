@@ -1,0 +1,50 @@
+# Enhanced wordlist generated from API documentation
+# Format: ServiceName:method1,method2,method3
+# Services without methods will use default scanning
+
+# Services with extracted methods
+Note:CreateNote
+NoteService:CreateNote
+NoteById:GetNoteById
+NoteByIdService:GetNoteById
+Notes:SearchNotes
+NotesService:SearchNotes
+User:CreateUser,DeleteUser
+UserService:CreateUser,DeleteUser
+UserInfo:GetUserInfo
+UserInfoService:GetUserInfo
+UserProfile:UpdateUserProfile
+UserProfileService:UpdateUserProfile
+
+# Services without specific methods (will use defaults)
+Authentication
+AuthenticationService
+AuthenticationService
+NoteService
+Users
+UsersService
+
+# Global methods to try on all services
+*Check
+*Create
+*CreateBatch
+*Delete
+*DeleteBatch
+*Find
+*Get
+*GetById
+*GetByName
+*List
+*ListAll
+*Query
+*Search
+*Stream
+*Update
+*UpdatePartial
+*Validate
+*Watch
+
+# Summary:
+# - 6 services with specific methods
+# - 4 services without methods
+# - 18 global methods

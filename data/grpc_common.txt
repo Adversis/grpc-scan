@@ -1,0 +1,114 @@
+# Common gRPC Services and Methods
+# A focused wordlist for quick scanning
+# Format: ServiceName:method1,method2,method3
+
+# === Most Common Services ===
+# These are found in many gRPC implementations
+
+# Hello World (very common in examples/demos)
+helloworld.Greeter:SayHello
+Greeter:SayHello
+HelloService:Hello,SayHello
+GreeterService:Greet,SayHello
+
+# Health & Reflection (standard gRPC)
+grpc.health.v1.Health:Check,Watch
+grpc.reflection.v1alpha.ServerReflection:ServerReflectionInfo
+
+# Echo/Ping (common for testing)
+Echo:Echo,UnaryEcho,StreamingEcho
+EchoService:Echo,UnaryEcho,StreamingEcho
+PingService:Ping
+ping.Ping:Ping
+
+# Authentication (almost universal)
+AuthService:Login,Logout,Authenticate,ValidateToken,RefreshToken
+auth.Auth:Login,Logout,Authenticate,ValidateToken,RefreshToken
+Authentication:Login,Logout,Authenticate
+auth.v1.AuthService:Login,Logout,Authenticate,ValidateToken,RefreshToken
+
+# User Management (very common)
+UserService:GetUser,CreateUser,UpdateUser,DeleteUser,ListUsers
+user.User:Get,Create,Update,Delete,List
+user.v1.UserService:GetUser,CreateUser,UpdateUser,DeleteUser,ListUsers
+User:Get,Create,Update,Delete,List
+
+# === Common Patterns by Industry ===
+
+# E-commerce/Retail
+ProductService:GetProduct,ListProducts,SearchProducts
+OrderService:CreateOrder,GetOrder,UpdateOrder,CancelOrder
+CartService:AddToCart,RemoveFromCart,GetCart,Checkout
+PaymentService:ProcessPayment,RefundPayment,GetPaymentStatus
+
+# SaaS/Cloud Services
+AccountService:CreateAccount,GetAccount,UpdateAccount
+SubscriptionService:Subscribe,Unsubscribe,GetSubscription
+BillingService:GetInvoice,ProcessPayment,GetBillingInfo
+UsageService:GetUsage,RecordUsage,GetUsageReport
+
+# Communication/Messaging
+MessageService:SendMessage,GetMessages,DeleteMessage
+NotificationService:SendNotification,GetNotifications
+EmailService:SendEmail,GetEmailStatus
+ChatService:SendMessage,GetMessages,JoinRoom
+
+# File/Storage
+FileService:Upload,Download,Delete,List
+StorageService:Store,Retrieve,Delete,List
+MediaService:Upload,GetMedia,Process
+
+# API/Gateway
+ApiService:Call,Execute
+GatewayService:Route,Forward
+ProxyService:Proxy,Forward
+
+# === Quick Check Methods ===
+# These methods work across many services
+*Get
+*List
+*Create
+*Update
+*Delete
+*Search
+*GetById
+*GetByName
+*Ping
+*Check
+*Status
+*Info
+*Version
+
+# === Simple Service Names ===
+# Try these with default methods
+API
+Service
+Server
+Admin
+Management
+System
+Core
+Main
+App
+Application
+Backend
+Platform
+Gateway
+Proxy
+Auth
+User
+Account
+Profile
+Data
+Database
+Cache
+Queue
+Stream
+Event
+Log
+Metric
+Monitor
+Health
+Status
+Config
+Setting

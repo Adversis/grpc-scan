@@ -1,0 +1,126 @@
+# Common gRPC service names
+# One per line, comments start with # or //
+
+# Authentication/User Management
+User
+Auth
+Account
+Identity
+Profile
+Session
+Login
+Registration
+Password
+
+# E-commerce
+Product
+Order
+Cart
+Payment
+Checkout
+Inventory
+Shipping
+Billing
+Invoice
+Receipt
+
+# Content/Media
+File
+Storage
+Media
+Image
+Video
+Document
+Upload
+Download
+Asset
+Content
+
+# Communication
+Notification
+Email
+SMS
+Message
+Chat
+Push
+Alert
+Webhook
+
+# Analytics/Monitoring
+Analytics
+Metrics
+Stats
+Logging
+Monitoring
+Tracking
+Report
+Dashboard
+Event
+
+# API/System
+API
+Gateway
+Proxy
+Config
+Settings
+Health
+Status
+Info
+Version
+Admin
+Management
+System
+
+# Data
+Database
+Query
+Search
+Cache
+Index
+Lookup
+Filter
+
+# Common test/demo services
+Hello
+Helloworld
+Greeter
+Echo
+Ping
+Test
+Demo
+Sample
+Example
+
+# Business specific
+Customer
+Member
+Subscription
+Plan
+Feature
+Preference
+Location
+Address
+Review
+Rating
+Comment
+Feedback
+
+# Microservices patterns
+UserService
+AuthService
+ProductService
+OrderService
+PaymentService
+NotificationService
+EmailService
+FileService
+ConfigService
+HealthService
+
+# Versioned patterns
+UserV1
+UserV2
+AuthV1
+AuthV2
+APIv1
+APIv2

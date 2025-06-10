@@ -1,0 +1,171 @@
+# gRPC Wordlist Based on grpc-go/examples
+# Extracted from https://github.com/grpc/grpc-go/tree/master/examples
+# These are ACTUAL services and methods from the examples
+
+# === Basic Examples ===
+
+# helloworld - The most basic example
+helloworld.Greeter:SayHello
+
+# route_guide - Shows all 4 types of RPCs
+routeguide.RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+
+# === Feature Examples ===
+
+# features/authentication
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/compression
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho
+
+# features/deadline
+grpc.examples.echo.Echo:UnaryEcho,BidirectionalStreamingEcho
+
+# features/encryption/TLS
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/errors - Error handling
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/interceptor
+grpc.examples.echo.Echo:UnaryEcho,StreamingEcho
+
+# features/keepalive
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/load_balancing
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/metadata
+grpc.examples.echo.Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+
+# features/multiplex - Multiple services
+grpc.examples.echo.Echo:UnaryEcho,BidirectionalStreamingEcho
+helloworld.Greeter:SayHello
+
+# features/name_resolving
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/retry
+grpc.examples.echo.Echo:UnaryEcho
+
+# features/wait_for_ready
+grpc.examples.echo.Echo:UnaryEcho
+
+# === Common Patterns from Examples ===
+
+# The Echo service is used extensively
+Echo:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+EchoService:UnaryEcho,ServerStreamingEcho,ClientStreamingEcho,BidirectionalStreamingEcho
+
+# Greeter variations
+Greeter:SayHello
+GreeterService:SayHello
+HelloService:SayHello
+
+# Route/Location services
+RouteGuide:GetFeature,ListFeatures,RecordRoute,RouteChat
+LocationService:GetLocation,ListLocations,RecordLocation
+
+# === Streaming Patterns ===
+# Based on the 4 types shown in examples
+
+# Unary (simple request-response)
+*UnaryEcho
+*Get
+*Create
+*Update
+*Delete
+
+# Server streaming (server sends multiple responses)
+*ServerStreamingEcho
+*List
+*Watch
+*Subscribe
+*Monitor
+
+# Client streaming (client sends multiple requests)
+*ClientStreamingEcho
+*Upload
+*RecordRoute
+*BulkCreate
+*Import
+
+# Bidirectional streaming
+*BidirectionalStreamingEcho
+*Chat
+*RouteChat
+*Stream
+*Sync
+
+# === Package Patterns from Examples ===
+# How services are commonly namespaced
+
+# Simple package.Service
+echo.Echo
+helloworld.Greeter
+routeguide.RouteGuide
+
+# Nested packages
+grpc.examples.echo.Echo
+grpc.health.v1.Health
+grpc.reflection.v1alpha.ServerReflection
+
+# Versioned services
+api.v1.Service
+service.v1.Service
+v1.Service
+
+# === Method Naming Patterns ===
+# Common prefixes seen in examples
+
+# Get methods
+*GetFeature
+*GetUser
+*GetStatus
+*GetConfig
+
+# List methods
+*ListFeatures
+*ListUsers
+*ListItems
+
+# Action methods
+*SayHello
+*SendMessage
+*ProcessRequest
+*ExecuteCommand
+
+# Stream methods
+*StreamData
+*StreamEvents
+*StreamUpdates
+
+# === Testing/Debug Services ===
+# Often left enabled in development
+
+TestService:Test,RunTest,GetTestStatus
+DebugService:Debug,GetDebugInfo,SetDebugLevel
+EchoService:Echo
+PingService:Ping
+HealthService:Check,Watch
+
+# === Additional Common Services ===
+# Based on typical gRPC applications
+
+# Core services
+CoreService:GetVersion,GetStatus,GetInfo
+MainService:Execute,Process,Handle
+
+# Admin services  
+AdminService:GetStats,GetMetrics,ExecuteCommand
+ManagementService:Manage,Control,Configure
+
+# System services
+SystemService:GetSystemInfo,GetSystemStatus
+MonitorService:Monitor,GetMetrics,GetStatus
+
+# API gateway patterns
+APIGateway:Route,Forward,Process
+Gateway:Route,Forward,Transform
+Proxy:ProxyRequest,Forward

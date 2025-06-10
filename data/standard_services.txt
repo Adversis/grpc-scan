@@ -315,4 +315,3 @@ blockchain.indexer.api.BlockchainService
 
 proto.HelloService
 proto.PingService
-proto.ProductService
