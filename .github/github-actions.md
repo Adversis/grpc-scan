@@ -19,8 +19,7 @@ Automatically builds and publishes binaries when you create a GitHub release:
   - Windows (amd64, arm64)
 - Creates compressed archives with the binary and documentation
 - Uploads archives as release assets
-- Builds and publishes Docker images (optional, requires DockerHub setup)
-
+  
 ## Usage
 
 ### Creating a Release
@@ -42,13 +41,3 @@ Automatically builds and publishes binaries when you create a GitHub release:
    - Build binaries for all platforms
    - Create archives with the binary, README, LICENSE, and data files
    - Upload them to the release
-
-### Docker Support (Optional)
-
-To enable Docker image publishing:
-1. Create DockerHub account
-2. Add these secrets to your GitHub repository:
-   - `DOCKERHUB_USERNAME`: Your DockerHub username
-   - `DOCKERHUB_TOKEN`: Your DockerHub access token
-
-If these secrets are not set, the Docker build step will be skipped.
