@@ -1,54 +1,119 @@
 name: Release
-
 on:
-  release:
-    types: [created]
-
-permissions:
-  contents: write
-
+  push:
+    tags:
+      - 'v*'
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - goos: linux
-            goarch: amd64
-          - goos: linux
-            goarch: arm64
-          - goos: linux
-            goarch: arm
-            goarm: 7
-          - goos: darwin
-            goarch: amd64
-          - goos: darwin
-            goarch: arm64
-          - goos: windows
-            goarch: amd64
-          - goos: windows
-            goarch: arm64
-
+    permissions:
+      contents: write
+    
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.21'
-
-      - name: Build
-        env:
-          GOOS: ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
-          GOARM: ${{ matrix.goarm }}
-        run: |
-          ext=""
-          [ "$GOOS" = "windows" ] && ext=".exe"
-          go build -ldflags="-s -w" -o "grpc-scan-$GOOS-$GOARCH$ext" .
-
-      - name: Upload
-        uses: softprops/action-gh-release@v1
-        with:
-          files: grpc-scan-*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+    
+    - name: Build binaries
+      run: |
+        # Create output directory
+        mkdir -p dist
+        
+        # Build for Linux AMD64
+        echo "Building linux/amd64..."
+        GOOS=linux GOARCH=amd64 go build -o "dist/grpc-scan-linux-amd64" -ldflags="-s -w" .
+        tar -czf "dist/grpc-scan-linux-amd64.tar.gz" -C dist "grpc-scan-linux-amd64"
+        rm "dist/grpc-scan-linux-amd64"
+        
+        # Build for Linux ARM64
+        echo "Building linux/arm64..."
+        GOOS=linux GOARCH=arm64 go build -o "dist/grpc-scan-linux-arm64" -ldflags="-s -w" .
+        tar -czf "dist/grpc-scan-linux-arm64.tar.gz" -C dist "grpc-scan-linux-arm64"
+        rm "dist/grpc-scan-linux-arm64"
+        
+        # Build for Linux ARMv7
+        echo "Building linux/arm (v7)..."
+        GOOS=linux GOARCH=arm GOARM=7 go build -o "dist/grpc-scan-linux-armv7" -ldflags="-s -w" .
+        tar -czf "dist/grpc-scan-linux-armv7.tar.gz" -C dist "grpc-scan-linux-armv7"
+        rm "dist/grpc-scan-linux-armv7"
+        
+        # Build for macOS AMD64
+        echo "Building darwin/amd64..."
+        GOOS=darwin GOARCH=amd64 go build -o "dist/grpc-scan-darwin-amd64" -ldflags="-s -w" .
+        tar -czf "dist/grpc-scan-darwin-amd64.tar.gz" -C dist "grpc-scan-darwin-amd64"
+        rm "dist/grpc-scan-darwin-amd64"
+        
+        # Build for macOS ARM64 (Apple Silicon)
+        echo "Building darwin/arm64..."
+        GOOS=darwin GOARCH=arm64 go build -o "dist/grpc-scan-darwin-arm64" -ldflags="-s -w" .
+        tar -czf "dist/grpc-scan-darwin-arm64.tar.gz" -C dist "grpc-scan-darwin-arm64"
+        rm "dist/grpc-scan-darwin-arm64"
+        
+        # Build for Windows AMD64
+        echo "Building windows/amd64..."
+        GOOS=windows GOARCH=amd64 go build -o "dist/grpc-scan-windows-amd64.exe" -ldflags="-s -w" .
+        (cd dist && zip "grpc-scan-windows-amd64.zip" "grpc-scan-windows-amd64.exe")
+        rm "dist/grpc-scan-windows-amd64.exe"
+        
+        # Build for Windows ARM64
+        echo "Building windows/arm64..."
+        GOOS=windows GOARCH=arm64 go build -o "dist/grpc-scan-windows-arm64.exe" -ldflags="-s -w" .
+        (cd dist && zip "grpc-scan-windows-arm64.zip" "grpc-scan-windows-arm64.exe")
+        rm "dist/grpc-scan-windows-arm64.exe"
+        
+        # Show what we built
+        echo "Build artifacts:"
+        ls -la dist/
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/*
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+        body: |
+          ## Installation
+          
+          Download the binary for your platform and extract it:
+          
+          **Linux/macOS:**
+          ```bash
+          # For Intel/AMD systems:
+          tar -xzf grpc-scan-linux-amd64.tar.gz
+          chmod +x grpc-scan-linux-amd64
+          ./grpc-scan-linux-amd64 -url http://localhost:8888
+          
+          # For ARM64 systems (e.g., newer Raspberry Pi, AWS Graviton):
+          tar -xzf grpc-scan-linux-arm64.tar.gz
+          chmod +x grpc-scan-linux-arm64
+          ./grpc-scan-linux-arm64 -url http://localhost:8888
+          
+          # For ARMv7 systems (e.g., Raspberry Pi 3/4 32-bit):
+          tar -xzf grpc-scan-linux-armv7.tar.gz
+          chmod +x grpc-scan-linux-armv7
+          ./grpc-scan-linux-armv7 -url http://localhost:8888
+          ```
+          
+          **macOS:**
+          ```bash
+          # For Intel Macs:
+          tar -xzf grpc-scan-darwin-amd64.tar.gz
+          chmod +x grpc-scan-darwin-amd64
+          ./grpc-scan-darwin-amd64 -url http://localhost:8888
+          
+          # For Apple Silicon Macs (M1/M2/M3):
+          tar -xzf grpc-scan-darwin-arm64.tar.gz
+          chmod +x grpc-scan-darwin-arm64
+          ./grpc-scan-darwin-arm64 -url http://localhost:8888
+          ```
+          
+          **Windows:**
+          ```powershell
+          # Extract the zip file and run:
+          grpc-scan-windows-amd64.exe -url http://localhost:8888
+          ```
